@@ -3,8 +3,47 @@ from sqlalchemy.orm import Session
 from .database import SessionLocal
 from .models import Contact
 from .schemas import ContactCreate
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+
 
 router = APIRouter()
+
+def Send_mail(datas):
+    password = "Vaqeel@123"
+    email = "abdulvaqeel9636@gmail.com"
+    app_password = "cmko rofn dmrm aase"
+
+    html_content = f"""
+<html>
+  <body>
+    <h2>User Details Submission</h2>
+    <p><b>Name:</b> {datas.full_name}</p>
+    <p><b>Contact:</b> {datas.phone_number}</p>
+    <hr>
+    <p>Sent via automated service.</p>
+  </body>
+</html>
+"""
+    
+    msg = MIMEMultipart("alternative")
+    msg["subject"] = "Below is my details:"
+    msg["from"] = email
+    msg["to"] = "vaqeel@vs.sa"
+
+    msg.attach(MIMEText(html_content, "html"))
+    try:
+        with smtplib.SMTP("smtp.gmail.com", 587) as server:
+            server.starttls()
+            server.login(email,app_password)
+            server.sendmail(email, "vaqeel@vs.sa",msg.as_string())
+            print("Mail send successfully")
+    except smtplib.SMTPAuthenticationError as e:
+        print(e)
+
 
 def get_db():
     db = SessionLocal()
@@ -21,6 +60,7 @@ def create_contact(contact: ContactCreate, db: Session = Depends(get_db)):
         phone_number=contact.phone_number,
         message=contact.message
     )
+    Send_mail(new_contact)
     db.add(new_contact)
     db.commit()
     db.refresh(new_contact)
