@@ -2,13 +2,12 @@ import React from 'react';
 import { Box } from '@mui/material';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import AboutPage from './components/AboutPage';
-import ServicesPage from './components/ServicesPage';
-import ContactPage from './components/ContactPage';
-import OurPartners from './components/OurPartners';
-import HomePage from './components/HomePage';
+import Navbar from './components/navbar/Navbar';
+import Footer from './components/footer/Footer';
+import AboutPage from './components/about/AboutPage';
+import ServicesPage from './components/services/ServicesPage';
+import ContactPage from './components/contactus/ContactPage';
+import HomePage from './components/home/HomePage';
 
 const App: React.FC = () => {
   return (
@@ -23,7 +22,6 @@ const App: React.FC = () => {
             <Route path="/services" element={<ServicesPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="contact us" element={<ContactPage />} />
-            <Route path="/partners" element={<OurPartners />} />
           </Routes>
         </Box>
 
