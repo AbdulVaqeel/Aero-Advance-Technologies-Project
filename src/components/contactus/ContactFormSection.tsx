@@ -60,7 +60,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                   Address
                 </Typography>
                 <Typography variant="body1">
-                  114 Al Muruj,<br />
+                  114 Al Morabba,<br />
                   Riyadh 12552,<br />
                   Kingdom of Saudi Arabia.
                 </Typography>
@@ -83,7 +83,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                       '&:hover': { color: '#e0d6ff' } 
                     }}
                   >
-                    054600 8481
+                    055 600 7891
                   </Link>
                   <br />
                   <Link 
@@ -116,7 +116,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                       '&:hover': { color: '#e0d6ff' } 
                     }}
                   >
-                    abdulvaqeel9636@gmail.com
+                    client@gmail.com
                   </Link>
                   <br />
                   <Link 
@@ -127,7 +127,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                       '&:hover': { color: '#e0d6ff' } 
                     }}
                   >
-                    vaqeel@vs.sa
+                    client123@outlook.com
                   </Link>
                 </Typography>
               </Box>

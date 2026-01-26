@@ -33,8 +33,8 @@ const Footer: React.FC = () => {
             {/* Social Media Icons – White by default, Blue on hover */}
             <Box sx={{ display: 'flex', gap: 2.5 }}>
               <MuiLink
-                href="https://www.facebook.com/share/1D5fSZ7dPb/"
-                target="_blank"
+                href="#"
+                // target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
               >
@@ -49,8 +49,8 @@ const Footer: React.FC = () => {
               </MuiLink>
 
               <MuiLink
-                href="https://x.com/AVaqeel?t=Qzcd6OAyOTZcTqSnMYj2-Q&s=09"
-                target="_blank"
+                href="#"
+                // target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitter"
               >
@@ -65,8 +65,8 @@ const Footer: React.FC = () => {
               </MuiLink>
 
               <MuiLink
-                href="https://www.linkedin.com/in/abdul-vaqeel"
-                target="_blank"
+                href="#"
+                // target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
@@ -81,8 +81,8 @@ const Footer: React.FC = () => {
               </MuiLink>
 
               <MuiLink
-                href="https://www.instagram.com/mohamed_vaqeel?igsh=MWk1aXdjbzJqMnZqNw=="
-                target="_blank"
+                href="#"
+                // target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
               >
@@ -171,19 +171,19 @@ const Footer: React.FC = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   <Typography variant="body2" sx={{ color: '#b0b0b0', fontSize: '15px', lineHeight: 1.6 }}>
-                    114 Al Muruj, Riyadh - 12552,<br />
+                    114 Al Morabba, Riyadh - 12552,<br />
                     Kingdom of Saudi Arabia
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1 }}>
                     <Typography variant="body2" sx={{ color: '#b0b0b0' }}>Mobile:</Typography>
                     <MuiLink href="tel:+966546008481" underline="none" sx={{ color: '#b0b0b0', '&:hover': { color: '#667eea' } }}>
-                      +966 54600 8481
+                      +966 55600 7891
                     </MuiLink>
                   </Box>
                   <Box sx={{ display: 'flex', gap: 1 }}>
                     <Typography variant="body2" sx={{ color: '#b0b0b0' }}>Email:</Typography>
                     <MuiLink href="mailto:abdulvaqeel9636@gmail.com" underline="none" sx={{ color: '#b0b0b0', '&:hover': { color: '#667eea' } }}>
-                      abdulvaqeel9636@gmail.com
+                      client@gmail.com
                     </MuiLink>
                   </Box>
                 </Box>
