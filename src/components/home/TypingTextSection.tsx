@@ -13,6 +13,7 @@ interface TypingTextSectionProps {
 const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
   const [displayedText, setDisplayedText] = useState('');
   const intervalRef = useRef<number | null>(null);
+  const indexRef = useRef<number>(0);
   
   const { ref, inView } = useInView({
     threshold: 0.25,
@@ -26,22 +27,20 @@ const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
     }
 
     setDisplayedText('');
-    let i = 0;
+    indexRef.current = 0;
 
-    const typeNext = () => {
-      if (i < section.text.length) {
-        setDisplayedText((prev) => prev + section.text[i]);
-        i++;
+    intervalRef.current = setInterval(() => {
+      if (indexRef.current < section.text.length) {
+        const currentChar = section.text[indexRef.current];
+        setDisplayedText((prev) => prev + currentChar);
+        indexRef.current++;
       } else {
         if (intervalRef.current !== null) {
           clearInterval(intervalRef.current);
           intervalRef.current = null;
         }
       }
-    };
-
-    typeNext();
-    intervalRef.current = setInterval(typeNext, 35);
+    }, 35);
   };
 
   useEffect(() => {
@@ -53,10 +52,14 @@ const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
         intervalRef.current = null;
       }
       setDisplayedText('');
+      indexRef.current = 0;
     }
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
   }, [inView, section.text]);
 

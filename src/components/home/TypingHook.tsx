@@ -16,6 +16,7 @@ export const useTypingEffect = ({
 }: UseTypingEffectOptions) => {
   const [displayedText, setDisplayedText] = useState('');
   const intervalRef = useRef<number | null>(null);
+  const indexRef = useRef<number>(0);
   
   const { ref, inView } = useInView({
     threshold,
@@ -29,22 +30,20 @@ export const useTypingEffect = ({
     }
 
     setDisplayedText('');
-    let i = 0;
+    indexRef.current = 0;
 
-    const typeNext = () => {
-      if (i < text.length) {
-        setDisplayedText((prev) => prev + text[i]);
-        i++;
+    intervalRef.current = setInterval(() => {
+      if (indexRef.current < text.length) {
+        const currentChar = text[indexRef.current];
+        setDisplayedText((prev) => prev + currentChar);
+        indexRef.current++;
       } else {
         if (intervalRef.current !== null) {
           clearInterval(intervalRef.current);
           intervalRef.current = null;
         }
       }
-    };
-
-    typeNext();
-    intervalRef.current = setInterval(typeNext, speed);
+    }, speed);
   }, [text, speed]);
 
   useEffect(() => {
@@ -56,10 +55,14 @@ export const useTypingEffect = ({
         intervalRef.current = null;
       }
       setDisplayedText('');
+      indexRef.current = 0;
     }
 
     return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
     };
   }, [inView, startTyping]);
 
