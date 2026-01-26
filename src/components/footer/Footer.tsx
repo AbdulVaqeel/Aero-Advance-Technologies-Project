@@ -194,7 +194,7 @@ const Footer: React.FC = () => {
 
         <Box sx={{ borderTop: '1px solid #333', mt: 6, pt: 3, textAlign: 'center' }}>
           <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
-            © 2025 SkyTech Aviation. All rights reserved. | Privacy Policy | Terms of Service
+            © 2026 Aero Advance Technologies. All rights reserved. | Privacy Policy | Terms of Service
           </Typography>
         </Box>
       </Container>
