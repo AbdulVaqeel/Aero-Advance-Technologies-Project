@@ -12,12 +12,11 @@ const HomePage = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const galleryImages = [
-    { src: '/oils_home.jpg', alt: 'Oils' },
-    { src: '/grease_home.jpg', alt: 'Grease' },
-    { src: '/lubricants_home.jpg', alt: 'Lubricants' },
-    { src: '/coolants_home.jpg', alt: 'Coolants' },
-    { src: '/chemicals_home.jpg', alt: 'Chemicals' },
-    { src: '/lubricants2_home.jpg', alt: 'Lubricants' },
+    { src: '/oils_header.jpg', alt: 'Oils' },
+    { src: '/grease_header.jpg', alt: 'Grease' },
+    { src: '/lubricants_header.jpg', alt: 'Lubricants' },
+    { src: '/coolants_header.jpg', alt: 'Coolants' },
+    { src: '/chemicals_header.jpg', alt: 'Chemicals' },
   ];
 
   // Auto slide interval
