@@ -72,6 +72,7 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
               variant="body1"
               sx={{
                 color: 'white',
+                mb:12,
                 fontSize: { xs: '1.1rem', md: '1.35rem' },
                 lineHeight: 1.7,
                 maxWidth: '85%',

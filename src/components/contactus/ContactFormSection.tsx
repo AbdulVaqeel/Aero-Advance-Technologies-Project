@@ -41,7 +41,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
             overflow: 'hidden',
             backgroundImage: `
               linear-gradient(135deg, rgba(102,126,234,0.9) 0%, rgba(118,75,162,0.9) 100%),
-              url('/contact_img.jpg')`,
+              url('/contactus.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',

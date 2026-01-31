@@ -55,14 +55,14 @@ const HomePage = () => {
       id: 'oil',
       title: 'Built for the Demands of Oil & Gas Operations',
       description: 'Experience a higher standard in oil and gas services—where precision, reliability, and industry expertise come together to support your most critical operations and drive energy performance forward.',
-      image: 'oils2.jpg',
+      image: 'oils_sub-header.jpg',
       alt: 'Oils'
     },
     {
       id: 'grease',
       title: 'Greases Built for Demanding Operations',
       description: 'Experience a higher standard in greases designed for performance and reliability, supporting critical applications and delivering consistent results under demanding conditions.',
-      image: 'grease_home.jpg',
+      image: 'greases_sub-header.jpg',
       alt: 'Greases',
       reverse: true
     },
@@ -70,14 +70,14 @@ const HomePage = () => {
       id: 'coolants',
       title: 'Advanced Coolants for Peak Performance',
       description: 'Experience a higher standard in coolants designed for performance and reliability, supporting critical applications and delivering consistent results under demanding conditions.',
-      image: 'coolants_home.jpg',
+      image: 'coolants_sub-header.jpg',
       alt: 'Coolants'
     },
     {
       id: 'chemicals',
       title: 'Innovative Chemicals for Maximum Efficiency',
       description: 'Experience a higher standard in chemicals, designed for performance and reliability. Supporting critical applications and delivering consistent results under demanding conditions.',
-      image: 'chemicals_home.jpg',
+      image: 'chemicals_sub-header.jpg',
       alt: 'Chemicals',
       reverse: true
     },
@@ -85,7 +85,7 @@ const HomePage = () => {
       id: 'lubricants',
       title: 'Precision Lubricants for Reliable Operations',
       description: 'Experience superior performance with advanced lubricants, engineered to reduce wear and maximize efficiency. Protecting critical machinery, and ensuring smooth, reliable operation under demanding conditions.',
-      image: 'lubricants_home.jpg',
+      image: 'lubricants_sub-header.jpg',
       alt: 'Private jet boarding'
     }
   ];
@@ -96,14 +96,14 @@ const HomePage = () => {
       id: 'aviation',
       title: 'Precision solutions built for aviation excellence',
       description: 'Experience the ultimate freedom of air travel with private aviation services tailored to your needs. Whether for business or leisure, enjoy a journey defined by comfort, style, and unmatched efficiency.',
-      image: 'oils2.jpg',
+      image: 'aviation_sub-header.jpg',
       alt: 'Aviation'
     },
     {
       id: 'spare-parts',
       title: 'Trusted Parts for Critical Aviation Systems',
       description: 'Experience unmatched confidence with premium spare parts, engineered to deliver precision and reliability. Supporting critical operations with consistent performance and ensuring your business runs efficiently, every time.',
-      image: 'grease_home.jpg',
+      image: 'spareparts_sub-header.jpg',
       alt: 'Spare Parts',
       reverse: true
     },
@@ -111,43 +111,36 @@ const HomePage = () => {
       id: 'tools',
       title: 'Reliable Tools for Critical Operations',
       description: 'Experience unmatched confidence with premium tools, engineered for precision, durability, and reliability. Supporting critical operations with consistent performance and ensuring your business runs efficiently, every time.',
-      image: 'coolants_home.jpg',
+      image: 'tools_sub-header.webp',
       alt: 'Tools'
     },
     {
       id: 'equipment',
       title: 'Advanced Equipment for Maximum Efficiency',
       description: 'Experience reliable, high-performance equipment, built for precision, strength, and dependability. Supporting essential operations with consistent results and keeping your business running efficiently.',
-      image: 'chemicals_home.jpg',
+      image: 'equipments_sub-header.jpg',
       alt: 'Equipments',
       reverse: true
     }
   ];
 
-  // Content sections data (Electrical & Electronics)
+  // Content sections data (Electrical and Electronics & Communications)
   const electricalSections = [
     {
       id: 'electrical',
       title: 'Advanced Electrical for Peak Performance',
       description: 'Experience reliable, high-performance electrical equipment, engineered for precision, strength, and durability. Supporting critical operations with consistent results and keeping your business running efficiently.',
-      image: 'oils2.jpg',
+      image: 'electrical_sub-header.jpg',
       alt: 'Electricals'
     },
     {
-      id: 'electronics',
-      title: 'High-Performance Electronics Solutions',
-      description: 'Experience reliable, high-performance electronic systems, engineered for precision, durability, and efficiency. Supporting critical operations with consistent results and ensuring your business runs smoothly at all times.',
-      image: 'grease_home.jpg',
-      alt: 'Electronics',
+      id: 'electronics & communications',
+      title: 'Electronics Solutions & Communications',
+      description: 'Experience reliable, high-performance electronic systems, engineered for precision, durability, and efficiency. Deliver dependable, high-performance communication solutions, designed for accuracy, resilience, and seamless operation.',
+      image: 'electro&commu_sub-header.jpg',
+      alt: 'Electronics & Communications',
       reverse: true
     },
-    {
-      id: 'communication',
-      title: 'Reliable Communication, Every Time',
-      description: 'Deliver dependable, high-performance communication solutions, designed for accuracy, resilience, and seamless operation. Enabling critical functions with consistent, reliable performance and keeping your business connected and operating efficiently.',
-      image: 'coolants_home.jpg',
-      alt: 'Communications'
-    }
   ];
 
   return (
