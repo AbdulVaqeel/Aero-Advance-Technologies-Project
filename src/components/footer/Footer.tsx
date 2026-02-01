@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <Flight sx={{ fontSize: 30, mr: 1 }} />
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                SkyTech Aviation
+                Aero Advance Technologies
               </Typography>
             </Box>
             <Typography variant="body2" sx={{ mb: 2, color: '#b0b0b0' }}>

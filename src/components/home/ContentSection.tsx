@@ -15,44 +15,64 @@ interface ContentSectionProps {
 }
 
 const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }) => {
-  const [ref, inView] = useInView({ threshold: 0.2, triggerOnce: false });
+  const [ref, inView] = useInView({
+    threshold: 0.15,
+    triggerOnce: true,
+  });
 
-  const transformStyle = sectionIndex <= 5 
-    ? { xs: 'translateY(-60px)', md: 'translateY(-100px)' }
-    : { xs: 'translateY(-60px)', md: 'translateY(-100px)' };
+  // Small upward shift – keeps the floating look without big gaps
+  const transformStyle = { xs: 'translateY(-20px)', md: 'translateY(-30px)' };
 
   const imageTransition = section.reverse ? 'translateX(100%)' : 'translateX(-100%)';
   const textTransition = section.reverse ? 'translateX(-100%)' : 'translateX(100%)';
 
   return (
-    <Box 
+    <Box
       ref={ref}
-      sx={{ 
-        pt: { xs: sectionIndex === 1 ? 8 : 2, md: sectionIndex === 1 ? 12 : 4 }, 
-        pb: { xs: 6, md: sectionIndex === 5 ? 12 : 8 }, 
-        bgcolor: '#F2F8FF', 
+      sx={{
+        // Much tighter vertical spacing
+        pt: {
+          xs: sectionIndex === 1 ? 5 : 3,      // first section still slightly more
+          md: sectionIndex === 1 ? 7 : 4,
+        },
+        pb: {
+          xs: 4,
+          md: 5,
+        },
+        bgcolor: '#F2F8FF',
         transform: transformStyle,
-        overflow: 'hidden'
+        overflow: 'hidden',
       }}
     >
       <Container maxWidth="lg">
-        <Grid container alignItems="center" spacing={6} direction={section.reverse ? 'row-reverse' : 'row'}>
+        <Grid
+          container
+          alignItems="center"
+          spacing={{ xs: 3, md: 5 }}          // reduced horizontal gap between image & text
+          direction={section.reverse ? 'row-reverse' : 'row'}
+        >
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                borderRadius: { xs: 3, md: 4 },
+                borderRadius: { xs: 2, md: 3 },
                 overflow: 'hidden',
-                boxShadow: sectionIndex !== 1 ? '0 20px 50px rgba(0,0,0,0.15)' : 'none',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.12)',
                 opacity: inView ? 1 : 0,
                 transform: inView ? 'translateX(0)' : imageTransition,
-                transition: 'all 1s ease-out',
-                transitionDelay: '0.1s',
+                transition: 'all 0.9s ease-out',
+                transitionDelay: '0.15s',
               }}
             >
               <img
                 src={section.image}
                 alt={section.alt}
-                style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  display: 'block',
+                  objectFit: 'cover',
+                }}
+                loading="lazy"
               />
             </Box>
           </Grid>
@@ -62,29 +82,32 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
               sx={{
                 opacity: inView ? 1 : 0,
                 transform: inView ? 'translateX(0)' : textTransition,
-                transition: 'all 1s ease-out',
-                transitionDelay: section.reverse ? '0.2s' : '0.4s',
+                transition: 'all 0.9s ease-out',
+                transitionDelay: section.reverse ? '0.25s' : '0.4s',
+                px: { xs: 1, md: 0 },
               }}
             >
               <Typography
-                variant="h3"
+                variant="h4"
                 sx={{
                   fontWeight: 700,
                   color: '#8B4513',
-                  mb: 2,
-                  fontSize: { xs: '2rem', md: '3rem' },
+                  mb: 1,                    // reduced margin below title
+                  fontSize: { xs: '1.6rem', sm: '1.9rem', md: '2.4rem' },
+                  lineHeight: 1.2,
                 }}
               >
                 {section.title}
               </Typography>
-              <Box sx={{ height: 4, width: 100, bgcolor: '#D4AF37', mb: 4 }} />
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  fontSize: '1.25rem', 
-                  lineHeight: 1.8, 
+
+              <Box sx={{ height: 3, width: 70, bgcolor: '#D4AF37', mb: 2 }} /> {/* tighter spacing */}
+
+              <Typography
+                variant="body1"
+                sx={{
+                  fontSize: { xs: '1rem', md: '1.1rem' },
+                  lineHeight: 1.65,
                   color: '#444',
-                  '&:hover': { color: 'navy' } 
                 }}
               >
                 {section.description}

@@ -11,7 +11,7 @@ const ServicesHero: React.FC = () => {
       backgroundPosition: 'center',
       display: 'flex',
       alignItems: 'center',
-      py: { xs: 6, md: 0 },
+      py: { xs: 12, md: 0 },
       '&::before': {
         content: '""',
         position: 'absolute',

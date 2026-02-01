@@ -1,17 +1,40 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Box, Fade } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
 import TypingTextSection from './TypingTextSection';
 import GallerySlider from './GallerySlider';
 import ContentSection from './ContentSection';
 import FeaturesSection from './FeaturesSection';
 import HeroSection from './HeroSections';
 
+// Reusable slider logic hook
+const useSlider = (length: number, intervalMs = 5000) => {
+  const [current, setCurrent] = React.useState(0);
+
+  React.useEffect(() => {
+    if (length <= 1) return;
+
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % length);
+    }, intervalMs);
+
+    return () => clearInterval(timer);
+  }, [length, intervalMs]);
+
+  const goToNext = () => setCurrent((prev) => (prev + 1) % length);
+  const goToPrev = () => setCurrent((prev) => (prev - 1 + length) % length);
+  const goToIndex = (index: number) => setCurrent(index);
+
+  return { current, goToNext, goToPrev, goToIndex };
+};
+
 const HomePage = () => {
   const navigate = useNavigate();
-  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const galleryImages = [
+  // ── Slider 1 ── Oils / Greases / Lubricants / Coolants / Chemicals
+  const slider1 = useSlider(5);
+  const galleryImages1 = [
     { src: '/oils_header.jpg', alt: 'Oils' },
     { src: '/grease_header.jpg', alt: 'Grease' },
     { src: '/lubricants_header.jpg', alt: 'Lubricants' },
@@ -19,16 +42,21 @@ const HomePage = () => {
     { src: '/chemicals_header.jpg', alt: 'Chemicals' },
   ];
 
-  // Auto slide interval
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [galleryImages.length]);
+  // ── Slider 2 ── Aviation related
+  const slider2 = useSlider(4);
+  const galleryImages2 = [
+    { src: '/aviation.webp', alt: 'Aviation' },
+    { src: '/spareparts.webp', alt: 'Spare parts' },
+    { src: '/tools.jpg', alt: 'Tools' },
+    { src: '/equipments.avif', alt: 'Equipments' },
+  ];
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1));
-  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1));
+  // ── Slider 3 ── Electrical & Communications
+  const slider3 = useSlider(2);
+  const galleryImages3 = [
+    { src: '/electrical.jpg', alt: 'Electrical' },
+    { src: '/electro&commu.jpg', alt: 'Electronics & Communications' },
+  ];
 
   // Typing sections data
   const typingSections = [
@@ -147,65 +175,63 @@ const HomePage = () => {
     <Fade in timeout={2000}>
       <Box>
         <HeroSection navigate={navigate} />
-        
+
         <TypingTextSection section={typingSections[0]} />
-        
-        <GallerySlider 
+
+        <GallerySlider
           title="Oils, Greases, Lubricants, Coolants, Chemicals"
-          currentSlide={currentSlide}
-          galleryImages={galleryImages}
-          nextSlide={nextSlide}
-          prevSlide={prevSlide}
-          setCurrentSlide={setCurrentSlide}
+          images={galleryImages1}
+          currentSlide={slider1.current}
+          onNext={slider1.goToNext}
+          onPrev={slider1.goToPrev}
+          onDotClick={slider1.goToIndex}
         />
-        
+
+        {/* Only meaningful gap – after slider before content cards */}
+        <Box sx={{ mt: { xs: 3, md: 1 } }} />
+
         {oilGasSections.map((section, index) => (
-          <ContentSection 
-            key={section.id}
-            section={section}
-            sectionIndex={index + 1}
-          />
+          <ContentSection key={section.id} section={section} sectionIndex={index + 1} />
         ))}
-        
+
         <TypingTextSection section={typingSections[1]} />
-        
-        <GallerySlider 
-          title="Aviation, Spare parts, Tools, Equipments"
-          currentSlide={currentSlide}
-          galleryImages={galleryImages}
-          nextSlide={nextSlide}
-          prevSlide={prevSlide}
-          setCurrentSlide={setCurrentSlide}
+
+        <GallerySlider
+          title="Aviation, Spare Parts, Tools, Equipment"
+          images={galleryImages2}
+          currentSlide={slider2.current}
+          onNext={slider2.goToNext}
+          onPrev={slider2.goToPrev}
+          onDotClick={slider2.goToIndex}
         />
-        
+
+        <Box sx={{ mt: { xs: 3, md: 5 } }} />
+
         {aviationSections.map((section, index) => (
-          <ContentSection 
-            key={section.id}
-            section={section}
-            sectionIndex={index + 6} // Continue from where oilGasSections left off
-          />
+          <ContentSection key={section.id} section={section} sectionIndex={index + 6} />
         ))}
-        
+
         <TypingTextSection section={typingSections[2]} />
-        
-        <GallerySlider 
-          title="Electrical, Electronics & Communication."
-          currentSlide={currentSlide}
-          galleryImages={galleryImages}
-          nextSlide={nextSlide}
-          prevSlide={prevSlide}
-          setCurrentSlide={setCurrentSlide}
+
+        <GallerySlider
+          title="Electrical, Electronics & Communications"
+          images={galleryImages3}
+          currentSlide={slider3.current}
+          onNext={slider3.goToNext}
+          onPrev={slider3.goToPrev}
+          onDotClick={slider3.goToIndex}
         />
-        
+
+        <Box sx={{ mt: { xs: 3, md: 5 } }} />
+
         {electricalSections.map((section, index) => (
-          <ContentSection 
-            key={section.id}
-            section={section}
-            sectionIndex={index + 10} // Continue from where aviationSections left off
-          />
+          <ContentSection key={section.id} section={section} sectionIndex={index + 10} />
         ))}
-        
+
         <FeaturesSection />
+
+        {/* Small bottom padding so last section doesn't stick to edge */}
+        <Box sx={{ mb: { xs: 4, md: 6 } }} />
       </Box>
     </Fade>
   );

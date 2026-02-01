@@ -144,7 +144,7 @@ const AboutPage: React.FC = () => {
         
         <GridSectorsSection 
           sectors={sectors}
-          title="Our Expertise Across Sectors"
+          // title="Our Expertise Across Sectors"
           mb={10}
         />
 

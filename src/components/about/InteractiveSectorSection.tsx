@@ -19,7 +19,7 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
   sectors,
   sectionIndex,
   reverse = false,
-  title
+  title,
 }) => {
   const [activeSector, setActiveSector] = useState(0);
   const current = sectors[activeSector];
@@ -27,112 +27,139 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
   const gridDirection = reverse ? 'row-reverse' : 'row';
 
   return (
-    <Grid 
-      container 
-      spacing={6} 
-      sx={{ mb: 10, mt: 6 }} 
-      direction={gridDirection}
-    >
-      <Grid item xs={12} md={7}>
-        <Box
+    <Box sx={{ mb: 12 }}>
+      {title && (
+        <Typography
+          variant="h3"
+          align="center"
           sx={{
-            position: 'relative',
-            height: { xs: 400, md: 550 },
-            borderRadius: 3,
-            overflow: 'hidden',
-            boxShadow: '0 15px 40px rgba(0,0,0,0.25)',
-            transition: 'all 0.4s ease',
+            mb: { xs: 5, md: 7 },
+            fontWeight: 700,
+            fontSize: { xs: '2.2rem', md: '3.2rem' },
           }}
         >
-          <Box
-            component="img"
-            src={current.image}
-            alt={current.title}
-            sx={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              transition: 'transform 0.6s ease',
-              '&:hover': { transform: 'scale(1.05)' },
-            }}
-          />
+          {title}
+        </Typography>
+      )}
 
+      <Grid container spacing={{ xs: 4, md: 6 }} direction={gridDirection}>
+        <Grid item xs={12} md={7}>
           <Box
             sx={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,30,40,0.3))',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              p: 5,
+              position: 'relative',
+              height: { xs: '460px', sm: '520px', md: '620px' }, // taller → more room for text
+              borderRadius: 4,
+              overflow: 'hidden',
+              boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
             }}
           >
-            <Typography
-              variant="body1"
+            <Box
+              component="img"
+              src={current.image}
+              alt={current.title}
               sx={{
-                color: 'white',
-                mb:12,
-                fontSize: { xs: '1.1rem', md: '1.35rem' },
-                lineHeight: 1.7,
-                maxWidth: '85%',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                transition: 'transform 0.7s ease',
+              }}
+            />
+
+            {/* Overlay – structured with flex column */}
+            <Box
+              sx={{
+                position: 'absolute',
+                inset: 0,
+                background: 'linear-gradient(to top, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, transparent 100%)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                p: { xs: 4, md: 6 },
+                pb: { xs: 5, md: 7 },
               }}
             >
-              {current.text}
-            </Typography>
+              {/* Large title – smaller on mobile, no overlap */}
+              <Typography
+                variant="h2"
+                sx={{
+                  color: 'white',
+                  fontWeight: 800,
+                  fontSize: { xs: '2.4rem', sm: '3rem', md: '4.8rem' },
+                  lineHeight: 1,
+                  mb: { xs: 2, md: 3 },
+                  textShadow: '0 4px 16px rgba(0,0,0,0.7)',
+                  pointerEvents: 'none',
+                }}
+              >
+                {current.title}
+              </Typography>
+
+              {/* Description – scrollable container if too long */}
+              <Box
+                sx={{
+                  overflowY: 'auto',
+                  maxHeight: { xs: '180px', md: '240px' }, // adjust based on your longest text
+                  WebkitOverflowScrolling: 'touch',
+                  pr: 1.5, // space for scrollbar
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  sx={{
+                    color: 'white',
+                    fontSize: { xs: '1.05rem', md: '1.3rem' },
+                    lineHeight: 1.65,
+                    maxWidth: '92%',
+                  }}
+                >
+                  {current.text}
+                </Typography>
+              </Box>
+            </Box>
           </Box>
+        </Grid>
 
-          <Typography
-            variant="h3"
+        <Grid item xs={12} md={5}>
+          <Box
             sx={{
-              position: 'absolute',
-              bottom: 40,
-              left: 40,
-              color: 'white',
-              fontWeight: 'bold',
-              fontSize: { xs: '3rem', md: '5rem' },
-              textShadow: '0 4px 14px rgba(0,0,0,0.8)',
-              pointerEvents: 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: { xs: 1.5, md: 2.5 },
+              height: '100%',
+              justifyContent: { md: 'center' },
+              pt: { xs: 3, md: 0 },
             }}
           >
-            {current.title}
-          </Typography>
-        </Box>
+            {sectors.map((sector, idx) => (
+              <ButtonBase
+                key={idx}
+                onMouseEnter={() => setActiveSector(idx)}
+                onClick={() => setActiveSector(idx)}
+                focusRipple
+                sx={{
+                  p: { xs: 2.5, md: 3.5 },
+                  borderRadius: 3,
+                  bgcolor: activeSector === idx ? `${sector.hoverColor}15` : 'rgba(0,0,0,0.06)',
+                  color: activeSector === idx ? sector.hoverColor : 'text.primary',
+                  fontWeight: activeSector === idx ? 700 : 500,
+                  transition: 'all 0.3s ease',
+                  textAlign: 'center',
+                  fontSize: { xs: '1.1rem', md: '1.25rem' },
+                  border: activeSector === idx ? `2px solid ${sector.hoverColor}` : '1px solid transparent',
+                  '&:hover': {
+                    bgcolor: `${sector.hoverColor}25`,
+                    transform: 'translateX(6px)',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                  },
+                }}
+              >
+                {sector.title}
+              </ButtonBase>
+            ))}
+          </Box>
+        </Grid>
       </Grid>
-
-      <Grid item xs={12} md={5}>
-        <Box sx={{ 
-          display: 'flex', 
-          flexDirection: 'column', 
-          gap: 2, 
-          height: '100%', 
-          justifyContent: { md: 'center' } 
-        }}>
-          {sectors.map((sector, idx) => (
-            <ButtonBase
-              key={idx}
-              onMouseEnter={() => setActiveSector(idx)}
-              onClick={() => setActiveSector(idx)}
-              sx={{
-                p: 3,
-                borderRadius: 2,
-                bgcolor: activeSector === idx ? 'rgba(20, 110, 237, 0.15)' : 'rgba(0,0,0,0.08)',
-                color: activeSector === idx ? '#146eed' : '#333',
-                fontWeight: activeSector === idx ? 'bold' : 'medium',
-                transition: 'all 0.3s ease',
-                textAlign: 'center',
-                '&:hover': { 
-                  bgcolor: 'rgba(20, 110, 237, 0.25)', 
-                  transform: 'translateX(8px)' 
-                },
-              }}
-            >
-              {sector.title}
-            </ButtonBase>
-          ))}
-        </Box>
-      </Grid>
-    </Grid>
+    </Box>
   );
 };
 

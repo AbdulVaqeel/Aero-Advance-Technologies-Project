@@ -28,8 +28,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
         loop
         muted
         playsInline
-        poster="https://images.stockcake.com/public/e/b/7/eb7e4fe1-9d5b-4c42-96f8-2d862c789650_large/jet-engine-maintenance-stockcake.jpg"
-        src="https://videos.pexels.com/video-files/11866363/11866363-hd_1920_1080_30fps.mp4"
+        src="jet-engine_maintenance.mp4"
         sx={{
           position: 'absolute',
           top: 0,
@@ -52,16 +51,20 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
       />
 
       <Box sx={{ position: 'relative', zIndex: 2, px: 3 }}>
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 800,
-            fontSize: { xs: '3.5rem', md: '6rem' },
-            textShadow: '0 4px 20px rgba(0,0,0,0.9)',
-          }}
-        >
-          Aero Advance Technologies
-        </Typography>
+         <Typography
+        variant="h2"
+       sx={{
+      fontWeight: 800,
+      fontSize: { xs: '2.8rem', sm: '3.5rem', md: '6rem' },
+      lineHeight: 1.1,
+      textShadow: '0 4px 20px rgba(0,0,0,0.9)',
+      hyphens: 'auto',
+      maxWidth: '100%',
+      mx: 'auto',
+      }}
+      >
+    Aero Advance Technologies
+  </Typography>
         <Typography
           variant="h5"
           sx={{

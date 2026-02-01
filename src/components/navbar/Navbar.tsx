@@ -66,8 +66,8 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <AppBar position="sticky" sx={{ bgcolor: 'white', boxShadow: 3 }}>
-        <Toolbar sx={{ minHeight: { xs: 90, md: 80 }, py: 1 }}>
+      <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 3 }}>
+        <Toolbar sx={{ minHeight: { xs: 90, md: 80 }, py: 0 }}>
           {/* Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', mr: 4 }}>
             <Box
