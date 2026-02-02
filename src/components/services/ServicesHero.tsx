@@ -69,7 +69,7 @@ const ServicesHero: React.FC = () => {
                     fontSize: '1.1rem'
                   }}
                 >
-                  With our global Aircraft Procurement Services our goal is to assist both buyers and sellers with the acquisition or sale of any aircraft and to guide them throughout the whole process, guaranteeing a smooth transaction.
+                  Through our Aircraft Procurement Solutions, Aero Advance Technologies helps buyers and sellers successfully navigate aircraft purchasing and selling. From initial consultation to final delivery, we manage the complete process to ensure a secure, seamless, and hassle-free experience.
                 </Typography>
                 <Typography 
                   variant="body2" 
@@ -79,7 +79,7 @@ const ServicesHero: React.FC = () => {
                     fontSize: '1rem'
                   }}
                 >
-                  Finding the perfect plane for your businessmodel can be tough and when finding it, the whole process of inspection, paperwork, negotiations, parts
+                  Aero Advance Technologies makes finding and acquiring the right aircraft simple by managing inspections, paperwork, negotiations, and delivery—ensuring a smooth and hassle-free experience.
                 </Typography>
               </Box>
             </Fade>

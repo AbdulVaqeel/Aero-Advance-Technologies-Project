@@ -3,9 +3,18 @@ import { Container, Typography, Grid, Box, Fade } from '@mui/material';
 
 const ServiceExcellence: React.FC = () => {
   const excellenceItems = [
-    { color: '#ff6b6b', title: 'Certified Mechanics' },
-    { color: '#4ecdc4', title: 'Modern Technology' },
-    { color: '#ffe66d', title: '24/7 Support' }
+    { 
+      title: 'Certified Mechanics', 
+      bgImage: 'certified_mechanics.jpg' 
+    },
+    { 
+      title: 'Modern Technology', 
+      bgImage: 'modern_technology.jpg'
+    },
+    { 
+      title: '24/7 Support', 
+      bgImage: 'call_support.jpg'
+    }
   ];
 
   return (
@@ -26,27 +35,31 @@ const ServiceExcellence: React.FC = () => {
           <Grid item xs={12} md={4} key={idx}>
             <Fade in timeout={1500 + idx * 300}>
               <Box sx={{ 
-                height: '200px', 
-                bgcolor: item.color,
+                height: '200px',
                 borderRadius: 2,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                transition: 'transform 0.3s',
-                cursor: 'pointer',
                 position: 'relative',
+                cursor: 'pointer',
                 overflow: 'hidden',
-                '&:hover': { 
-                  transform: 'scale(1.05)'
-                }
+                transition: 'transform 0.3s',
+                '&:hover': { transform: 'scale(1.05)' },
+                backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${item.bgImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}>
+                {/* Text Content */}
                 <Typography 
                   variant="h5" 
                   sx={{ 
                     color: 'white', 
                     fontWeight: 'bold',
                     zIndex: 1,
-                    textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+                    textAlign: 'center',
+                    textShadow: '2px 2px 6px rgba(0,0,0,0.7)',
+                    px: 2
                   }}
                 >
                   {item.title}

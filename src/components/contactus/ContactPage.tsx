@@ -10,6 +10,7 @@ import {
 import ContactHero from './ContactHero';
 import ContactFormSection from './ContactFormSection';
 import api from '../services/api';
+import ContactMap from '../gmap/ContactMap';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -87,7 +88,21 @@ const ContactPage: React.FC = () => {
                 handleSubmit={handleSubmit}
               />
             </Grid>
-          </Grid>
+            
+
+            {/* Map - right side on desktop */}
+    <Grid item xs={12} md={7}>
+      <ContactMap
+        lat={24.7136}
+        lng={46.6753}
+        address="Kinf fahad district, Riyadh, Saudi Arabia"
+        zoom={14}
+        height={{ xs: 340, md: 500 }}
+        markerColor="primary"
+      />
+    </Grid>
+  </Grid>
+          
 
           <Snackbar 
             open={openSnackbar} 

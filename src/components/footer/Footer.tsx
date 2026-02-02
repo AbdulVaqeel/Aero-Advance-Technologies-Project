@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
-    { name: 'Careers', path: '/about' },
+    { name: 'Our Partners', path: '/partners' },
     { name: 'Contact Us', path: '/contact us' },
   ];
 
@@ -129,41 +129,37 @@ const Footer: React.FC = () => {
                 </Box>
               </Grid>
 
-              {/* Our Services */}
-              <Grid item xs={12} sm={4}>
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Our Services
-                </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
-                  {[
-                    'Private Charter',
-                    'Aircraft Maintenance',
-                    'Flight Training',
-                    'Aircraft Management',
-                    'Cargo Services',
-                    'Aviation Consulting',
-                  ].map((service) => (
-                    <MuiLink
-                      key={service}
-                      component="button"
-                      onClick={() => {}}
-                      underline="none"
-                      sx={{
-                        textAlign: 'left',
-                        color: '#b0b0b0',
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        font: 'inherit',
-                        '&:hover': { color: '#667eea' },
-                      }}
-                    >
-                      {service}
-                    </MuiLink>
-                  ))}
-                </Box>
-              </Grid>
-
+            {/* Our Services */}
+<Grid item xs={12} sm={4}>
+  <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
+    Our Services
+  </Typography>
+  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
+    {[
+      { name: 'Oil and Lubricant', id: 'oil-and-lubricant' },
+      { name: 'Defence and Aviation', id: 'defence-and-aviation' },
+      { name: 'Electricals', id: 'electricals' },
+    ].map((service) => (
+      <MuiLink
+        key={service.name}
+        component="button"
+        onClick={() => navigate(`/services#${service.id}`)}
+        underline="none"
+        sx={{
+          textAlign: 'left',
+          color: '#b0b0b0',
+          background: 'none',
+          border: 'none',
+          cursor: 'pointer',
+          font: 'inherit',
+          '&:hover': { color: '#667eea' },
+        }}
+      >
+        {service.name}
+      </MuiLink>
+    ))}
+  </Box>
+</Grid>
               {/* Contact */}
               <Grid item xs={12} sm={4}>
                 <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>

@@ -93,8 +93,11 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
                   fontWeight: 700,
                   color: '#8B4513',
                   mb: 1,                    // reduced margin below title
-                  fontSize: { xs: '1.6rem', sm: '1.9rem', md: '2.4rem' },
+                  fontSize: { xs: '1.6rem', sm: '1.9rem', md: '2.9rem' },
                   lineHeight: 1.2,
+                  "&:hover": {
+                    color:"navy"
+                  }
                 }}
               >
                 {section.title}
@@ -105,9 +108,12 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
               <Typography
                 variant="body1"
                 sx={{
-                  fontSize: { xs: '1rem', md: '1.1rem' },
+                  fontSize: { xs: '1rem', md: '1.3rem' },
                   lineHeight: 1.65,
                   color: '#444',
+                  "&:hover": {
+                    color:"navy"
+                  }
                 }}
               >
                 {section.description}

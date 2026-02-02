@@ -8,10 +8,12 @@ import AboutPage from './components/about/AboutPage';
 import ServicesPage from './components/services/ServicesPage';
 import ContactPage from './components/contactus/ContactPage';
 import HomePage from './components/home/HomePage';
+import ScrollToTop from './components/ScrollToTop';
 
 const App: React.FC = () => {
   return (
     <BrowserRouter>
+    <ScrollToTop />
       <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', bgcolor: '#fafafa' }}>
         <Navbar />
 

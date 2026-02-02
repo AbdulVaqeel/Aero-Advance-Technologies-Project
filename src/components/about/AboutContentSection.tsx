@@ -45,7 +45,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
             fontSize: { xs: '1rem', md: '1.2rem' } 
           }}
         >
-          We are passionate about regional connectivity and provide top-tier products, services, and support. Since 1981, we have delivered aircraft to over 200 airlines across 100+ countries, enabling essential links for passengers and communities worldwide.
+          Aero Advance Technologies is a forward-thinking start-up driven by a passion for advancing aviation and regional connectivity. We deliver high-quality products, reliable services, and dedicated support to meet the evolving needs of our clients, suppliers, and customers. With a strong focus on innovation, performance, and trust, we help create smarter solutions that strengthen connections and enable seamless operations for communities and businesses worldwide.
         </Typography>
 
         <Typography 
@@ -59,7 +59,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
             fontSize: { xs: '1rem', md: '1.2rem' } 
           }}
         >
-          We are passionate about regional connectivity and provide top-tier products, services, and support. Since 1981, we have delivered aircraft to over 200 airlines across 100+ countries, enabling essential links for passengers and communities worldwide.
+         we believe strong connectivity and reliable aviation solutions drive progress. We provide premium products, professional services, and dedicated support to ensure our customers receive the best experience from start to finish. Our team is passionate about helping clients and suppliers achieve success through quality, responsiveness, and continuous improvement.
         </Typography>
 
         {/* Story + Timeline, Mission, Vision, Values */}
@@ -68,7 +68,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
             <Slide direction="right" in timeout={1000}>
               <Box>
                 <Typography 
-                  variant="h5" 
+                  variant="h4" 
                   sx={{ 
                     mb: 3, 
                     fontWeight: 'bold', 
@@ -84,7 +84,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
                     lineHeight: 1.9 
                   }}
                 >
-                  Founded with a vision for excellence, we have grown into a trusted partner in aviation, marine, industrial, and automotive sectors across the GCC and beyond. Founded with a vision for excellence, we have grown into a trusted partner in aviation, marine, industrial, and automotive sectors across the GCC and beyond.
+                  Founded with a clear vision to deliver excellence and innovation, Aero Advance Technologies is steadily growing into a trusted name in the industry. As a start-up with strong ambition and purpose, we focus on providing high-quality products, reliable services, and professional support that meet the highest standards. Our commitment to performance, safety, and customer satisfaction continues to drive our success and strengthen our reputation.
                 </Typography>
                 <Typography 
                   paragraph 
@@ -93,7 +93,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
                     lineHeight: 1.9 
                   }}
                 >
-                  Founded with a vision for excellence, we have grown into a trusted partner in aviation, marine, industrial, and automotive sectors across the GCC and beyond. Founded with a vision for excellence, we have grown into a trusted partner in aviation, marine, industrial, and automotive sectors across the GCC and beyond.
+                  Through dedication, expertise, and a passion for advanced solutions, Aero Advance Technologies is building long-term partnerships with clients, suppliers, and customers. We are expanding our presence by delivering dependable aviation-focused products and services that create real value and lasting impact. With every project, we aim to support progress, enhance connectivity, and become a leading partner in the aviation sector and beyond.
                 </Typography>
               </Box>
             </Slide>
@@ -110,6 +110,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   boxShadow: '0 15px 35px rgba(0,0,0,0.2)',
+                  mt:5,
                 }}
               >
                 <Box sx={{ 

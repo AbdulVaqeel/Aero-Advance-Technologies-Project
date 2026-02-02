@@ -92,13 +92,14 @@ const ProcurementSection: React.FC<ProcurementSectionProps> = ({ navigate }) => 
               <Typography 
                 variant="body1" 
                 sx={{ 
-                  color: '#555',
+                  color: '#403d3d',
                   lineHeight: 1.8,
                   fontSize: '1rem',
-                  mb: 4
+                  mb: 4, 
+                  mt: 2
                 }}
               >
-                With our extensive market knowledge and experience with intercontinental business ethics we offer our clients guidance along the various steps in the process. No matter if it's for buying or selling an aircraft, by utilizing our vast network of contacts in the aviation industry we're always able to find the better deal.
+                Backed by years of industry experience and a deep understanding of global business practices, Aero Advance Technologies supports clients at every stage of buying or selling aircraft. From initial consultation and market research to inspections, negotiations, and final delivery, we leverage our extensive aviation network to ensure the most efficient process and secure the best possible deals for our clients.
               </Typography>
               <Button 
                 variant="contained"
