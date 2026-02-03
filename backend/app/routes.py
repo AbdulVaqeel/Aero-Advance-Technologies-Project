@@ -23,6 +23,8 @@ def Send_mail(datas):
     <h2>User Details Submission</h2>
     <p><b>Name:</b> {datas.full_name}</p>
     <p><b>Contact:</b> {datas.phone_number}</p>
+    <p><b>Email:</b> {datas.email}</p>
+    <p><b>Message:</b> {datas.message}</p>
     <hr>
     <p>Sent via automated service.</p>
   </body>

@@ -109,7 +109,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                 </Typography>
                 <Typography variant="body1">
                   <Link 
-                    href="mailto:abdulvaqeel9636@gmail.com" 
+                    href="mailto:client@gmail.com" 
                     underline="none" 
                     sx={{ 
                       color: 'white', 
@@ -120,7 +120,7 @@ const ContactFormSection: React.FC<ContactFormSectionProps> = ({
                   </Link>
                   <br />
                   <Link 
-                    href="mailto:vaqeel@vs.sa" 
+                    href="mailto:client123@outlook.com" 
                     underline="none" 
                     sx={{ 
                       color: 'white', 
