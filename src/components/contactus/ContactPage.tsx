@@ -6,6 +6,7 @@ import {
   Fade,
   Snackbar,
   Alert,
+  Box,
 } from '@mui/material';
 import ContactHero from './ContactHero';
 import ContactFormSection from './ContactFormSection';
@@ -88,21 +89,7 @@ const ContactPage: React.FC = () => {
                 handleSubmit={handleSubmit}
               />
             </Grid>
-            
-
-            {/* Map - right side on desktop */}
-    <Grid item xs={12} md={7}>
-      <ContactMap
-        lat={24.7136}
-        lng={46.6753}
-        address="Kinf fahad district, Riyadh, Saudi Arabia"
-        zoom={14}
-        height={{ xs: 340, md: 500 }}
-        markerColor="primary"
-      />
-    </Grid>
-  </Grid>
-          
+          </Grid>
 
           <Snackbar 
             open={openSnackbar} 
@@ -116,6 +103,18 @@ const ContactPage: React.FC = () => {
           </Snackbar>
         </Container>
       </Fade>
+
+      {/* Full-width Map Section - Before Footer */}
+      <Box sx={{ width: '100%', mt: 6, mb: 10 }}>
+        <ContactMap
+          lat={24.7136}
+          lng={46.6753}
+          address="King Fahad district, Riyadh, Saudi Arabia"
+          zoom={14}
+          height={{ xs: 350, md: 600 }}
+          markerColor="primary"
+        />
+      </Box>
     </>
   );
 };
