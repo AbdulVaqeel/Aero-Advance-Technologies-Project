@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
     { name: 'About', path: '/about' },
     { name: 'Our Partners', path: '/partners' },
     { name: 'Product & Services', path: '/services' },
-    { name: 'Contact Us', path: '/contact us' },
+    { name: 'Contact Us', path: '/contact' },
   ];
 
   const handleDrawerToggle = () => {

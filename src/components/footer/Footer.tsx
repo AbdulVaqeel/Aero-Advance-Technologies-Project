@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
     { name: 'About Us', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Our Partners', path: '/partners' },
-    { name: 'Contact Us', path: '/contact us' },
+    { name: 'Contact Us', path: '/contact' },
   ];
 
   return (
