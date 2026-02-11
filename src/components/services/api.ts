@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create Axios instance
 const api = axios.create({
-  baseURL: "https://aatc-backend.vercel.app/api/", // FastAPI base URL
+  baseURL: "https://aatc-backend.vercel.app/api/",
   headers: {
     "Content-Type": "application/json",
   },
