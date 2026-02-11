@@ -15,7 +15,8 @@ export const useTypingEffect = ({
   threshold = 0.25 
 }: UseTypingEffectOptions) => {
   const [displayedText, setDisplayedText] = useState('');
-  const intervalRef = useRef<number | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
   const indexRef = useRef<number>(0);
   
   const { ref, inView } = useInView({
