@@ -141,12 +141,12 @@ const AboutPage: React.FC = () => {
           title="Our Expertise Across Sectors"
         />
         
-        
+{/*         
         <GridSectorsSection 
           sectors={sectors}
           // title="Our Expertise Across Sectors"
           mb={10}
-        />
+        /> */}
 
         <InteractiveSectorSection 
           sectors={sectors1}
@@ -155,11 +155,11 @@ const AboutPage: React.FC = () => {
           title="Powering Multiple Industries"
         />
         
-        <GridSectorsSection 
+        {/* <GridSectorsSection 
           sectors={sectors1}
           title="Powering Multiple Industries"
           mb={10}
-        />
+        /> */}
 
         <InteractiveSectorSection 
           sectors={sectors2}
@@ -167,11 +167,11 @@ const AboutPage: React.FC = () => {
           title="Our Areas of Excellence"
         />
         
-        <GridSectorsSection 
+        {/* <GridSectorsSection 
           sectors={sectors2}
           title="Our Areas of Excellence"
           mb={10}
-        />
+        /> */}
 
         {/* Accelerating Sustainable Connections */}
         <Box sx={{ textAlign: 'center', mb: 10, mt: 10 }}>

@@ -10,7 +10,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
     <Box
       sx={{
         height: { xs: '70vh', md: '90vh' },
-        minHeight: '500px',
+        minHeight: '800px',
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -28,7 +28,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
         loop
         muted
         playsInline
-        src="jet-engine_maintenance.mp4"
+        src="homepage_flight.mp4"
         sx={{
           position: 'absolute',
           top: 0,

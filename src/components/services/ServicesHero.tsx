@@ -1,12 +1,13 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Fade } from '@mui/material';
+import { Box, Container, Grid, Typography, Fade, Slide } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const ServicesHero: React.FC = () => {
   return (
     <Box sx={{ 
       position: 'relative',
-      height: { xs: 'auto', md: '500px' },
-      backgroundImage: 'url(https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200)',
+      height: { xs: 'auto', md: '650px' },
+      backgroundImage: 'url(productandservice.jpg)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       display: 'flex',
@@ -19,10 +20,10 @@ const ServicesHero: React.FC = () => {
         left: 0,
         right: 0,
         bottom: 0,
-        bgcolor: 'rgba(139, 35, 50, 0.75)'
+        bgcolor: 'rgba(50, 27, 1, 0.75)'
       }
     }}>
-      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+      {/* <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={6}>
             <Fade in timeout={1000}>
@@ -43,17 +44,19 @@ const ServicesHero: React.FC = () => {
                   variant="h5" 
                   sx={{ 
                     color: 'white',
-                    fontWeight: 300,
+                    fontWeight: 400,
+                    width: '80rem',
+                    fontSize: { xs: '1.2rem', md: '1.8rem' }, 
                     mb: { xs: 4, md: 0 }
                   }}
                 >
-                  Get a better deal
+                   Aero Advance Technologies makes finding and acquiring the right aircraft simple by managing inspections, paperwork, negotiations, and delivery—ensuring a smooth and hassle-free experience.
                 </Typography>
               </Box>
             </Fade>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Fade in timeout={1200}>
+          </Grid> */}
+          {/* <Grid item xs={12} md={6}> */}
+            {/* <Fade in timeout={1200}>
               <Box sx={{ 
                 bgcolor: 'white',
                 p: 4,
@@ -82,10 +85,47 @@ const ServicesHero: React.FC = () => {
                   Aero Advance Technologies makes finding and acquiring the right aircraft simple by managing inspections, paperwork, negotiations, and delivery—ensuring a smooth and hassle-free experience.
                 </Typography>
               </Box>
-            </Fade>
-          </Grid>
-        </Grid>
+            </Fade> */}
+          {/* </Grid> */}
+        {/* </Grid>
+      </Container> */}
+
+       <Slide direction="up" in timeout={1200}>
+       <Container 
+        maxWidth="lg" 
+        sx={{ 
+          position: 'relative', 
+          zIndex: 1, 
+          pb: { xs: 6, md: 10 } 
+        }}
+      >
+            <Typography 
+              variant="h2" 
+              sx={{ 
+                fontWeight: 'bold', 
+                fontSize: { xs: '3rem', md: '5.5rem' }, 
+                lineHeight: 1.1, 
+                mt: 40, 
+                color: 'white'
+              }}
+            >
+               Aircraft Procurement
+            </Typography>
+
+            <Typography 
+              variant="h5" 
+              sx={{ 
+                fontWeight: 400, 
+                fontSize: { xs: '1.2rem', md: '1.8rem' }, 
+                lineHeight: 1.7, 
+                maxWidth: '800px',
+                color: 'white'
+              }}
+            >
+              Aero Advance Technologies makes finding and acquiring the right aircraft simple by managing inspections, paperwork, negotiations, and delivery—ensuring a smooth and hassle-free experience.
+            </Typography>
       </Container>
+      </Slide>
     </Box>
   );
 };

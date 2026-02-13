@@ -117,7 +117,7 @@ const ServicesPage: React.FC = () => {
   return (
     <Box>
       <ServicesHero />
-      <ProcurementSection navigate={navigate} />
+      {/* <ProcurementSection navigate={navigate} /> */}
       
       {/* Main Services Title - Only shown once */}
       <Fade in timeout={1000}>
@@ -126,7 +126,7 @@ const ServicesPage: React.FC = () => {
             variant="h3" 
             sx={{ 
               textAlign: 'center', 
-              mb: 2, 
+              mt: 10, 
               fontWeight: 'bold', 
               color: '#333' 
             }}

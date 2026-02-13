@@ -22,11 +22,11 @@ const Navbar: React.FC = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Our Partners', path: '/partners' },
-    { name: 'Product & Services', path: '/services' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: 'HOME', path: '/' },
+    { name: 'ABOUT', path: '/about' },
+    { name: 'OUR PARTNERS', path: '/partners' },
+    { name: 'PRODUCT & SERVICES', path: '/services' },
+    { name: 'CONTACT US', path: '/contact' },
   ];
 
   const handleDrawerToggle = () => {

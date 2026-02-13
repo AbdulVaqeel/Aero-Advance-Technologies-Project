@@ -21,7 +21,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
   if (showFullContent) {
     return (
       <>
-        <Typography
+        {/* <Typography
           variant="h2"
           sx={{
             fontWeight: 'bold',
@@ -32,9 +32,9 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
           }}
         >
           Accelerating Sustainable<br />Connections
-        </Typography>
+        </Typography> */}
 
-        <Typography 
+        {/* <Typography 
           variant="body1" 
           sx={{ 
             maxWidth: 900, 
@@ -46,9 +46,9 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
           }}
         >
           Aero Advance Technologies is a forward-thinking start-up driven by a passion for advancing aviation and regional connectivity. We deliver high-quality products, reliable services, and dedicated support to meet the evolving needs of our clients, suppliers, and customers. With a strong focus on innovation, performance, and trust, we help create smarter solutions that strengthen connections and enable seamless operations for communities and businesses worldwide.
-        </Typography>
+        </Typography> */}
 
-        <Typography 
+        {/* <Typography 
           variant="body1" 
           sx={{ 
             maxWidth: 900, 
@@ -60,11 +60,11 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
           }}
         >
          we believe strong connectivity and reliable aviation solutions drive progress. We provide premium products, professional services, and dedicated support to ensure our customers receive the best experience from start to finish. Our team is passionate about helping clients and suppliers achieve success through quality, responsiveness, and continuous improvement.
-        </Typography>
+        </Typography> */}
 
         {/* Story + Timeline, Mission, Vision, Values */}
         <Grid container spacing={5} sx={{ mb: 10 }}>
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <Slide direction="right" in timeout={1000}>
               <Box>
                 <Typography 
@@ -97,9 +97,9 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
                 </Typography>
               </Box>
             </Slide>
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <Slide direction="left" in timeout={1200}>
               <Box
                 sx={{
@@ -120,7 +120,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
                 }} />
               </Box>
             </Slide>
-          </Grid>
+          </Grid> */}
         </Grid>
 
         {/* Mission & Vision */}
@@ -176,7 +176,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
         </Grid>
 
         {/* Core Values */}
-        <Box sx={{ textAlign: 'center', mb: 10 }}>
+        {/* <Box sx={{ textAlign: 'center', mb: 10 }}>
           <Typography 
             variant="h5" 
             sx={{ 
@@ -216,7 +216,7 @@ const AboutContentSection: React.FC<AboutContentSectionProps> = ({
               </Grid>
             ))}
           </Grid>
-        </Box>
+        </Box> */}
       </>
     );
   }

@@ -42,7 +42,7 @@ const ContactHero: React.FC = () => {
         <Fade in timeout={1200}>
           <Box>
             {/* Clickable Breadcrumb */}
-            <Typography
+            {/* <Typography
               variant="body1"
               sx={{
                 color: 'white',
@@ -87,7 +87,7 @@ const ContactHero: React.FC = () => {
               >
                 CONTACT US
               </Link>
-            </Typography>
+            </Typography> */}
 
             {/* Main Title */}
             <Typography
