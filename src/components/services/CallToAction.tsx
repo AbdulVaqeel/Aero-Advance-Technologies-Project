@@ -54,7 +54,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ navigate }) => {
                 transform: 'scale(1.05)',
               },
             }}
-            onClick={() => navigate('/contact us')}
+            onClick={() => navigate('/contact')}
           >
             Get In Touch
             <Box

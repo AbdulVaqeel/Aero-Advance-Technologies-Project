@@ -78,7 +78,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
         <Button
           variant="contained"
           size="large"
-          onClick={() => navigate('/contact us')}
+          onClick={() => navigate('/contact')}
           sx={{
             bgcolor: 'white',
             color: '#0066cc',
