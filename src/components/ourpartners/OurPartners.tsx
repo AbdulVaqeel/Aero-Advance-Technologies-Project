@@ -353,7 +353,7 @@ const OurPartners = () => {
                 )})`,
                 backdropFilter: 'blur(8px)',
                 padding: '6px 20px',
-                mt: '10px',
+                mt: { xs: '50px', md: '20px'},
                 borderRadius: '60px',
                 color: '#b9e2ff',
                 border: `1px solid ${alpha(theme.palette.primary.main, 0.3)}`,
