@@ -9,6 +9,7 @@ import ServicesPage from './components/services/ServicesPage';
 import ContactPage from './components/contactus/ContactPage';
 import HomePage from './components/home/HomePage';
 import ScrollToTop from './components/ScrollToTop';
+import OurPartners from './components/ourpartners/OurPartners';
 
 const App: React.FC = () => {
   return (
@@ -22,7 +23,7 @@ const App: React.FC = () => {
             <Route path="/" element={<HomePage/>} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/about" element={<AboutPage />} />
+            <Route path="/partners" element={<OurPartners />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </Box>
