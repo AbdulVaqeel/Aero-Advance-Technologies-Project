@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {
   AppBar,
@@ -13,30 +14,42 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
-import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, Close as CloseIcon, Language as LanguageIcon } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const currentPath = location.pathname;
-
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+
+  // Apply RTL direction when language changes
+  useEffect(() => {
+    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   const pages = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Our partners', path: '/partners' },
-    { name: 'Products & Services', path: '/services' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.ourPartners'), path: '/partners' },
+    { name: t('nav.productsServices'), path: '/services' },
+    { name: t('nav.contactUs'), path: '/contact' },
   ];
+
+  const changeLanguage = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setShowLanguageMenu(false);
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   // Split pages for mobile drawer
-  const mainPages = pages.filter((page) => page.name !== 'Contact Us');
-  const contactPage = pages.find((page) => page.name === 'Contact Us');
+  const mainPages = pages.filter((page) => page.name !== t('nav.contactUs'));
+  const contactPage = pages.find((page) => page.name === t('nav.contactUs'));
 
   const drawer = (
     <Box sx={{ width: 280, pt: 2 }} role="presentation">
@@ -71,7 +84,7 @@ const Navbar: React.FC = () => {
         ))}
       </List>
 
-      {/* ✅ Mobile bottom actions */}
+      {/* Mobile bottom actions */}
       <Box sx={{ px: 3, mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
         
         {/* Contact Us small button */}
@@ -93,7 +106,7 @@ const Navbar: React.FC = () => {
               },
             }}
           >
-            Contact Us
+            {t('nav.contactUs')}
           </Button>
         )}
 
@@ -107,11 +120,11 @@ const Navbar: React.FC = () => {
           sx={{
             color: '#25D366',
             textTransform: 'none',
-            justifyContent: 'flex-start',
+            justifyContent: i18n.language === 'ar' ? 'flex-end' : 'flex-start',
             fontWeight: 500,
           }}
         >
-          WhatsApp
+          {t('nav.whatsapp')}
         </Button>
       </Box>
     </Box>
@@ -119,11 +132,20 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 3 }}>
-        <Toolbar sx={{ minHeight: { xs: 90, md: 80 }, py: 0 }}>
+      <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 3, overflow: 'visible', zIndex: 9999 }}>
+        <Toolbar sx={{ 
+          minHeight: { xs: 90, md: 80 }, 
+          py: 0,
+          justifyContent: 'space-between',
+          overflow: 'visible',
+        }}>
           
-          {/* Logo */}
-          <Box sx={{ display: 'flex', alignItems: 'center', mr: { xs: 2, md: 40 }  }}>
+          {/* Logo - on left in English, on right in Arabic */}
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            order: i18n.language === 'ar' ? 2 : 1,
+          }}>
             <Box
               component={Link}
               to="/"
@@ -140,7 +162,6 @@ const Navbar: React.FC = () => {
                 sx={{
                   width: { xs: 120, md: 160 },
                   height: 'auto',
-                  mr: 1.5,
                   objectFit: 'contain',
                   cursor: 'pointer',
                 }}
@@ -148,17 +169,19 @@ const Navbar: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation Menu - Center */}
           <Box
             sx={{
               flexGrow: 1,
               display: { xs: 'none', md: 'flex' },
               alignItems: 'center',
+              justifyContent: 'center',
+              order: 2,
             }}
           >
-            <Box sx={{ display: 'flex', gap: 3, ml: 4 }}>
+            <Box sx={{ display: 'flex', gap: 1 }}>
               {pages
-                .filter((page) => page.name !== 'Contact Us')
+                .filter((page) => page.name !== t('nav.contactUs'))
                 .map((page) => (
                   <Button
                     key={page.path}
@@ -179,10 +202,11 @@ const Navbar: React.FC = () => {
                         width: currentPath === page.path ? '100%' : '0',
                         height: '3px',
                         bottom: 0,
-                        left: '50%',
+                        left: i18n.language === 'ar' ? 'auto' : '50%',
+                        right: i18n.language === 'ar' ? '50%' : 'auto',
                         bgcolor: '#163ef0ff',
                         borderRadius: '2px',
-                        transform: 'translateX(-50%)',
+                        transform: i18n.language === 'ar' ? 'translateX(50%)' : 'translateX(-50%)',
                         transition: 'width 0.4s ease',
                       },
                       '&:hover': {
@@ -196,12 +220,18 @@ const Navbar: React.FC = () => {
                   </Button>
                 ))}
             </Box>
+          </Box>
 
-            <Box sx={{ flexGrow: 1 }} />
-
+          {/* Right side items container - on right in English, on left in Arabic */}
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center',
+            order: i18n.language === 'ar' ? 1 : 3,
+            position: 'relative',
+          }}>
             {/* Contact Us Desktop */}
             {pages
-              .filter((page) => page.name === 'Contact Us')
+              .filter((page) => page.name === t('nav.contactUs'))
               .map((page) => (
                 <Button
                   key={page.path}
@@ -216,7 +246,7 @@ const Navbar: React.FC = () => {
                     py: 1,
                     borderRadius: '25px',
                     fontSize: '1.05rem',
-                    mr: 2,
+                    mx: 1,
                     transition: 'all 0.3s ease',
                     '&:hover': {
                       backgroundColor: '#1338ddff',
@@ -228,6 +258,7 @@ const Navbar: React.FC = () => {
                 </Button>
               ))}
 
+            {/* WhatsApp Icon */}
             <IconButton
               component="a"
               href="https://wa.me/966546008481"
@@ -235,7 +266,7 @@ const Navbar: React.FC = () => {
               rel="noopener noreferrer"
               sx={{
                 color: '#25D366',
-                ml: 1,
+                mx: 1,
                 '&:hover': {
                   color: '#1ebe5d',
                   transform: 'scale(1.1)',
@@ -245,10 +276,93 @@ const Navbar: React.FC = () => {
             >
               <WhatsAppIcon sx={{ fontSize: '2rem' }} />
             </IconButton>
+
+            {/* Language Toggle Button - Hover version with no white space */}
+            <Box
+              sx={{ 
+                position: 'relative',
+                display: 'inline-block',
+                zIndex: 9999,
+              }}
+              onMouseEnter={() => setShowLanguageMenu(true)}
+              onMouseLeave={() => setShowLanguageMenu(false)}
+            >
+              <Button
+                startIcon={<LanguageIcon />}
+                sx={{
+                  color: '#000',
+                  textTransform: 'none',
+                  fontWeight: 500,
+                  mx: 1,
+                  '&:hover': {
+                    backgroundColor: 'rgba(19, 56, 221, 0.1)',
+                  },
+                }}
+              >
+                {i18n.language === 'en' ? 'English' : 'العربية'}
+              </Button>
+              
+              {showLanguageMenu && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: i18n.language === 'ar' ? 'auto' : 0,
+                    left: i18n.language === 'ar' ? 0 : 'auto',
+                    mt: 1,
+                    backgroundColor: 'white',
+                    boxShadow: '0px 4px 20px rgba(0,0,0,0.15)',
+                    borderRadius: '12px',
+                    minWidth: '150px',
+                    zIndex: 9999,
+                    overflow: 'hidden',
+                  }}
+                  onMouseEnter={() => setShowLanguageMenu(true)}
+                  onMouseLeave={() => setShowLanguageMenu(false)}
+                >
+                  <Box
+                    onClick={() => changeLanguage('en')}
+                    sx={{
+                      px: 2,
+                      py: 1.5,
+                      cursor: 'pointer',
+                      fontWeight: i18n.language === 'en' ? 'bold' : 'normal',
+                      color: '#000',
+                      '&:hover': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                      },
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                    }}
+                  >
+                    <span>🇬🇧</span> IN English
+                  </Box>
+                  <Box
+                    onClick={() => changeLanguage('ar')}
+                    sx={{
+                      px: 2,
+                      py: 1.5,
+                      cursor: 'pointer',
+                      fontWeight: i18n.language === 'ar' ? 'bold' : 'normal',
+                      color: '#000',
+                      '&:hover': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                      },
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                    }}
+                  >
+                    <span>🇸🇦</span> SA العربية
+                  </Box>
+                </Box>
+              )}
+            </Box>
           </Box>
 
-          {/* ✅ Mobile Hamburger (fixed visibility) */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
+          {/* Mobile Hamburger */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, order: 3 }}>
             <IconButton
               size="large"
               edge="end"
@@ -258,8 +372,6 @@ const Navbar: React.FC = () => {
               <MenuIcon sx={{ fontSize: '2rem' }} />
             </IconButton>
           </Box>
-
-          <Box sx={{ width: { md: 64 }, display: { xs: 'none', md: 'block' } }} />
         </Toolbar>
       </AppBar>
 
