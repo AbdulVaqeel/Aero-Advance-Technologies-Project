@@ -23,6 +23,7 @@ const Navbar: React.FC = () => {
   const currentPath = location.pathname;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
+  const [showMobileLanguageMenu, setShowMobileLanguageMenu] = useState(false);
 
   // Apply RTL direction when language changes
   useEffect(() => {
@@ -41,6 +42,7 @@ const Navbar: React.FC = () => {
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
     setShowLanguageMenu(false);
+    setShowMobileLanguageMenu(false);
   };
 
   const handleDrawerToggle = () => {
@@ -134,13 +136,14 @@ const Navbar: React.FC = () => {
     <>
       <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 3, overflow: 'visible', zIndex: 9999 }}>
         <Toolbar sx={{ 
-          minHeight: { xs: 90, md: 80 }, 
+          minHeight: { xs: 70, md: 80 }, 
           py: 0,
+          px: { xs: 2, md: 3 },
           justifyContent: 'space-between',
           overflow: 'visible',
         }}>
           
-          {/* Logo - on left in English, on right in Arabic */}
+          {/* Logo - on left in English, on right in Arabic for both desktop and mobile */}
           <Box sx={{ 
             display: 'flex', 
             alignItems: 'center',
@@ -160,7 +163,7 @@ const Navbar: React.FC = () => {
                 src="aatc_logo.jpeg"
                 alt="AATC Logo"
                 sx={{
-                  width: { xs: 120, md: 160 },
+                  width: { xs: 100, md: 160 },
                   height: 'auto',
                   objectFit: 'contain',
                   cursor: 'pointer',
@@ -222,9 +225,9 @@ const Navbar: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Right side items container - on right in English, on left in Arabic */}
+          {/* Desktop Right side items container - on right in English, on left in Arabic */}
           <Box sx={{ 
-            display: 'flex', 
+            display: { xs: 'none', md: 'flex' }, 
             alignItems: 'center',
             order: i18n.language === 'ar' ? 1 : 3,
             position: 'relative',
@@ -277,7 +280,7 @@ const Navbar: React.FC = () => {
               <WhatsAppIcon sx={{ fontSize: '2rem' }} />
             </IconButton>
 
-            {/* Language Toggle Button - Hover version with no white space */}
+            {/* Language Toggle Button - Hover version */}
             <Box
               sx={{ 
                 position: 'relative',
@@ -336,7 +339,7 @@ const Navbar: React.FC = () => {
                       gap: 1,
                     }}
                   >
-                    <span>🇬🇧</span> IN English
+                    <span>🇬🇧</span> English
                   </Box>
                   <Box
                     onClick={() => changeLanguage('ar')}
@@ -354,15 +357,100 @@ const Navbar: React.FC = () => {
                       gap: 1,
                     }}
                   >
-                    <span>🇸🇦</span> SA العربية
+                    <span>🇸🇦</span> العربية
                   </Box>
                 </Box>
               )}
             </Box>
           </Box>
 
-          {/* Mobile Hamburger */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' }, order: 3 }}>
+          {/* Mobile Container - Language and Hamburger */}
+          <Box sx={{ 
+            display: { xs: 'flex', md: 'none' }, 
+            alignItems: 'center',
+            gap: 1,
+            order: i18n.language === 'ar' ? 1 : 3,
+          }}>
+            {/* Mobile Language Selector */}
+            <Box
+              sx={{ 
+                position: 'relative',
+                display: 'inline-block',
+              }}
+            >
+              <Button
+                onClick={() => setShowMobileLanguageMenu(!showMobileLanguageMenu)}
+                startIcon={<LanguageIcon />}
+                sx={{
+                  color: '#000',
+                  textTransform: 'none',
+                  fontWeight: 500,
+                  minWidth: 'auto',
+                  px: 1,
+                  '&:hover': {
+                    backgroundColor: 'rgba(19, 56, 221, 0.1)',
+                  },
+                }}
+              >
+                {i18n.language === 'en' ? 'EN' : 'AR'}
+              </Button>
+              
+              {showMobileLanguageMenu && (
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: '100%',
+                    right: i18n.language === 'ar' ? 'auto' : 0,
+                    left: i18n.language === 'ar' ? 0 : 'auto',
+                    mt: 1,
+                    backgroundColor: 'white',
+                    boxShadow: '0px 4px 20px rgba(0,0,0,0.15)',
+                    borderRadius: '12px',
+                    minWidth: '130px',
+                    zIndex: 9999,
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Box
+                    onClick={() => changeLanguage('en')}
+                    sx={{
+                      px: 2,
+                      py: 1.5,
+                      cursor: 'pointer',
+                      fontWeight: i18n.language === 'en' ? 'bold' : 'normal',
+                      color: '#000',
+                      '&:hover': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                      },
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                    }}
+                  >
+                    <span>🇬🇧</span> English
+                  </Box>
+                  <Box
+                    onClick={() => changeLanguage('ar')}
+                    sx={{
+                      px: 2,
+                      py: 1.5,
+                      cursor: 'pointer',
+                      fontWeight: i18n.language === 'ar' ? 'bold' : 'normal',
+                      color: '#000',
+                      '&:hover': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                      },
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 1,
+                    }}
+                  >
+                    <span>🇸🇦</span> العربية
+                  </Box>
+                </Box>
+              )}
+            </Box>
+
             <IconButton
               size="large"
               edge="end"
@@ -378,7 +466,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Drawer */}
       <Drawer
         variant="temporary"
-        anchor="right"
+        anchor={i18n.language === 'ar' ? 'left' : 'right'}
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}

@@ -1,4 +1,4 @@
-/* src/rtl.css */
+/* src/rtl.css
 
 /* Base RTL direction */
 [dir="rtl"] {
@@ -58,4 +58,4 @@
 /* Optional: Improve readability for Arabic text */
 [dir="rtl"] * {
   font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-}
+} */
