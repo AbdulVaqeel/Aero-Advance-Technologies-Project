@@ -1,12 +1,12 @@
-/* src/rtl.css
+/* src/rtl.css */
 
 /* Base RTL direction */
-[dir="rtl"] {
+/* [dir="rtl"] {
   text-align: right;
-}
+} */
 
 /* Fix Material-UI components for RTL */
-[dir="rtl"] .MuiToolbar-root {
+/* [dir="rtl"] .MuiToolbar-root {
   flex-direction: row-reverse;
 }
 
@@ -27,35 +27,35 @@
 [dir="rtl"] .MuiDrawer-paper {
   right: auto;
   left: 0;
-}
+} */
 
 /* Fix for your navbar specific elements */
-[dir="rtl"] .MuiBox-root {
+/* [dir="rtl"] .MuiBox-root {
   text-align: right;
 }
 
 [dir="rtl"] .MuiAppBar-root .MuiButton-root {
   letter-spacing: normal;
-}
+} */
 
 /* Fix spacing for RTL */
-[dir="rtl"] .MuiBox-root > :not(style) ~ :not(style) {
+/* [dir="rtl"] .MuiBox-root > :not(style) ~ :not(style) {
   margin-right: 8px;
   margin-left: 0;
-}
+} */
 
 /* Logo and image adjustments for RTL */
-[dir="rtl"] .MuiBox-root img {
+/* [dir="rtl"] .MuiBox-root img {
   margin-left: 12px;
   margin-right: 0;
-}
+} */
 
 /* WhatsApp icon adjustments for RTL */
-[dir="rtl"] .MuiIconButton-root {
+/* [dir="rtl"] .MuiIconButton-root {
   transform: scaleX(-1);
-}
+} */
 
 /* Optional: Improve readability for Arabic text */
-[dir="rtl"] * {
+/* [dir="rtl"] * {
   font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
 } */

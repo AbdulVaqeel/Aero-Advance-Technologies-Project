@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
+import React, { useState } from 'react';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {
   AppBar,
@@ -14,44 +13,30 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material';
-import { Menu as MenuIcon, Close as CloseIcon, Language as LanguageIcon } from '@mui/icons-material';
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
-  const { t, i18n } = useTranslation();
   const location = useLocation();
   const currentPath = location.pathname;
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [showLanguageMenu, setShowLanguageMenu] = useState(false);
-  const [showMobileLanguageMenu, setShowMobileLanguageMenu] = useState(false);
 
-  // Apply RTL direction when language changes
-  useEffect(() => {
-    document.documentElement.dir = i18n.language === 'ar' ? 'rtl' : 'ltr';
-    document.documentElement.lang = i18n.language;
-  }, [i18n.language]);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const pages = [
-    { name: t('nav.home'), path: '/' },
-    { name: t('nav.about'), path: '/about' },
-    { name: t('nav.ourPartners'), path: '/partners' },
-    { name: t('nav.productsServices'), path: '/services' },
-    { name: t('nav.contactUs'), path: '/contact' },
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Our partners', path: '/partners' },
+    { name: 'Products & Services', path: '/services' },
+    { name: 'Contact Us', path: '/contact' },
   ];
-
-  const changeLanguage = (lang: string) => {
-    i18n.changeLanguage(lang);
-    setShowLanguageMenu(false);
-    setShowMobileLanguageMenu(false);
-  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
   // Split pages for mobile drawer
-  const mainPages = pages.filter((page) => page.name !== t('nav.contactUs'));
-  const contactPage = pages.find((page) => page.name === t('nav.contactUs'));
+  const mainPages = pages.filter((page) => page.name !== 'Contact Us');
+  const contactPage = pages.find((page) => page.name === 'Contact Us');
 
   const drawer = (
     <Box sx={{ width: 280, pt: 2 }} role="presentation">
@@ -86,7 +71,7 @@ const Navbar: React.FC = () => {
         ))}
       </List>
 
-      {/* Mobile bottom actions */}
+      {/* ✅ Mobile bottom actions */}
       <Box sx={{ px: 3, mt: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
         
         {/* Contact Us small button */}
@@ -108,7 +93,7 @@ const Navbar: React.FC = () => {
               },
             }}
           >
-            {t('nav.contactUs')}
+            Contact Us
           </Button>
         )}
 
@@ -122,11 +107,11 @@ const Navbar: React.FC = () => {
           sx={{
             color: '#25D366',
             textTransform: 'none',
-            justifyContent: i18n.language === 'ar' ? 'flex-end' : 'flex-start',
+            justifyContent: 'flex-start',
             fontWeight: 500,
           }}
         >
-          {t('nav.whatsapp')}
+          WhatsApp
         </Button>
       </Box>
     </Box>
@@ -134,21 +119,11 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 3, overflow: 'visible', zIndex: 9999 }}>
-        <Toolbar sx={{ 
-          minHeight: { xs: 70, md: 80 }, 
-          py: 0,
-          px: { xs: 2, md: 3 },
-          justifyContent: 'space-between',
-          overflow: 'visible',
-        }}>
+      <AppBar position="fixed" sx={{ bgcolor: 'white', boxShadow: 3 }}>
+        <Toolbar sx={{ minHeight: { xs: 90, md: 80 }, py: 0 }}>
           
-          {/* Logo - on left in English, on right in Arabic for both desktop and mobile */}
-          <Box sx={{ 
-            display: 'flex', 
-            alignItems: 'center',
-            order: i18n.language === 'ar' ? 2 : 1,
-          }}>
+          {/* Logo */}
+          <Box sx={{ display: 'flex', alignItems: 'center', mr: { xs: 2, md: 40 }  }}>
             <Box
               component={Link}
               to="/"
@@ -163,8 +138,9 @@ const Navbar: React.FC = () => {
                 src="aatc_logo.jpeg"
                 alt="AATC Logo"
                 sx={{
-                  width: { xs: 100, md: 160 },
+                  width: { xs: 120, md: 160 },
                   height: 'auto',
+                  mr: 1.5,
                   objectFit: 'contain',
                   cursor: 'pointer',
                 }}
@@ -172,19 +148,17 @@ const Navbar: React.FC = () => {
             </Box>
           </Box>
 
-          {/* Desktop Navigation Menu - Center */}
+          {/* Desktop Navigation */}
           <Box
             sx={{
               flexGrow: 1,
               display: { xs: 'none', md: 'flex' },
               alignItems: 'center',
-              justifyContent: 'center',
-              order: 2,
             }}
           >
-            <Box sx={{ display: 'flex', gap: 1 }}>
+            <Box sx={{ display: 'flex', gap: 3, ml: 4 }}>
               {pages
-                .filter((page) => page.name !== t('nav.contactUs'))
+                .filter((page) => page.name !== 'Contact Us')
                 .map((page) => (
                   <Button
                     key={page.path}
@@ -205,11 +179,10 @@ const Navbar: React.FC = () => {
                         width: currentPath === page.path ? '100%' : '0',
                         height: '3px',
                         bottom: 0,
-                        left: i18n.language === 'ar' ? 'auto' : '50%',
-                        right: i18n.language === 'ar' ? '50%' : 'auto',
+                        left: '50%',
                         bgcolor: '#163ef0ff',
                         borderRadius: '2px',
-                        transform: i18n.language === 'ar' ? 'translateX(50%)' : 'translateX(-50%)',
+                        transform: 'translateX(-50%)',
                         transition: 'width 0.4s ease',
                       },
                       '&:hover': {
@@ -223,18 +196,12 @@ const Navbar: React.FC = () => {
                   </Button>
                 ))}
             </Box>
-          </Box>
 
-          {/* Desktop Right side items container - on right in English, on left in Arabic */}
-          <Box sx={{ 
-            display: { xs: 'none', md: 'flex' }, 
-            alignItems: 'center',
-            order: i18n.language === 'ar' ? 1 : 3,
-            position: 'relative',
-          }}>
+            <Box sx={{ flexGrow: 1 }} />
+
             {/* Contact Us Desktop */}
             {pages
-              .filter((page) => page.name === t('nav.contactUs'))
+              .filter((page) => page.name === 'Contact Us')
               .map((page) => (
                 <Button
                   key={page.path}
@@ -249,7 +216,7 @@ const Navbar: React.FC = () => {
                     py: 1,
                     borderRadius: '25px',
                     fontSize: '1.05rem',
-                    mx: 1,
+                    mr: 2,
                     transition: 'all 0.3s ease',
                     '&:hover': {
                       backgroundColor: '#1338ddff',
@@ -261,7 +228,6 @@ const Navbar: React.FC = () => {
                 </Button>
               ))}
 
-            {/* WhatsApp Icon */}
             <IconButton
               component="a"
               href="https://wa.me/966546008481"
@@ -269,7 +235,7 @@ const Navbar: React.FC = () => {
               rel="noopener noreferrer"
               sx={{
                 color: '#25D366',
-                mx: 1,
+                ml: 1,
                 '&:hover': {
                   color: '#1ebe5d',
                   transform: 'scale(1.1)',
@@ -279,178 +245,10 @@ const Navbar: React.FC = () => {
             >
               <WhatsAppIcon sx={{ fontSize: '2rem' }} />
             </IconButton>
-
-            {/* Language Toggle Button - Hover version */}
-            <Box
-              sx={{ 
-                position: 'relative',
-                display: 'inline-block',
-                zIndex: 9999,
-              }}
-              onMouseEnter={() => setShowLanguageMenu(true)}
-              onMouseLeave={() => setShowLanguageMenu(false)}
-            >
-              <Button
-                startIcon={<LanguageIcon />}
-                sx={{
-                  color: '#000',
-                  textTransform: 'none',
-                  fontWeight: 500,
-                  mx: 1,
-                  '&:hover': {
-                    backgroundColor: 'rgba(19, 56, 221, 0.1)',
-                  },
-                }}
-              >
-                {i18n.language === 'en' ? 'English' : 'العربية'}
-              </Button>
-              
-              {showLanguageMenu && (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: '100%',
-                    right: i18n.language === 'ar' ? 'auto' : 0,
-                    left: i18n.language === 'ar' ? 0 : 'auto',
-                    mt: 1,
-                    backgroundColor: 'white',
-                    boxShadow: '0px 4px 20px rgba(0,0,0,0.15)',
-                    borderRadius: '12px',
-                    minWidth: '150px',
-                    zIndex: 9999,
-                    overflow: 'hidden',
-                  }}
-                  onMouseEnter={() => setShowLanguageMenu(true)}
-                  onMouseLeave={() => setShowLanguageMenu(false)}
-                >
-                  <Box
-                    onClick={() => changeLanguage('en')}
-                    sx={{
-                      px: 2,
-                      py: 1.5,
-                      cursor: 'pointer',
-                      fontWeight: i18n.language === 'en' ? 'bold' : 'normal',
-                      color: '#000',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                      },
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
-                    }}
-                  >
-                    <span>🇬🇧</span> English
-                  </Box>
-                  <Box
-                    onClick={() => changeLanguage('ar')}
-                    sx={{
-                      px: 2,
-                      py: 1.5,
-                      cursor: 'pointer',
-                      fontWeight: i18n.language === 'ar' ? 'bold' : 'normal',
-                      color: '#000',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                      },
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
-                    }}
-                  >
-                    <span>🇸🇦</span> العربية
-                  </Box>
-                </Box>
-              )}
-            </Box>
           </Box>
 
-          {/* Mobile Container - Language and Hamburger */}
-          <Box sx={{ 
-            display: { xs: 'flex', md: 'none' }, 
-            alignItems: 'center',
-            gap: 1,
-            order: i18n.language === 'ar' ? 1 : 3,
-          }}>
-            {/* Mobile Language Selector */}
-            <Box
-              sx={{ 
-                position: 'relative',
-                display: 'inline-block',
-              }}
-            >
-              <Button
-                onClick={() => setShowMobileLanguageMenu(!showMobileLanguageMenu)}
-                startIcon={<LanguageIcon />}
-                sx={{
-                  color: '#000',
-                  textTransform: 'none',
-                  fontWeight: 500,
-                  minWidth: 'auto',
-                  px: 1,
-                  '&:hover': {
-                    backgroundColor: 'rgba(19, 56, 221, 0.1)',
-                  },
-                }}
-              >
-                {i18n.language === 'en' ? 'EN' : 'AR'}
-              </Button>
-              
-              {showMobileLanguageMenu && (
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: '100%',
-                    right: i18n.language === 'ar' ? 'auto' : 0,
-                    left: i18n.language === 'ar' ? 0 : 'auto',
-                    mt: 1,
-                    backgroundColor: 'white',
-                    boxShadow: '0px 4px 20px rgba(0,0,0,0.15)',
-                    borderRadius: '12px',
-                    minWidth: '130px',
-                    zIndex: 9999,
-                    overflow: 'hidden',
-                  }}
-                >
-                  <Box
-                    onClick={() => changeLanguage('en')}
-                    sx={{
-                      px: 2,
-                      py: 1.5,
-                      cursor: 'pointer',
-                      fontWeight: i18n.language === 'en' ? 'bold' : 'normal',
-                      color: '#000',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                      },
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
-                    }}
-                  >
-                    <span>🇬🇧</span> English
-                  </Box>
-                  <Box
-                    onClick={() => changeLanguage('ar')}
-                    sx={{
-                      px: 2,
-                      py: 1.5,
-                      cursor: 'pointer',
-                      fontWeight: i18n.language === 'ar' ? 'bold' : 'normal',
-                      color: '#000',
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                      },
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
-                    }}
-                  >
-                    <span>🇸🇦</span> العربية
-                  </Box>
-                </Box>
-              )}
-            </Box>
-
+          {/* ✅ Mobile Hamburger (fixed visibility) */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 'auto' }}>
             <IconButton
               size="large"
               edge="end"
@@ -460,13 +258,15 @@ const Navbar: React.FC = () => {
               <MenuIcon sx={{ fontSize: '2rem' }} />
             </IconButton>
           </Box>
+
+          <Box sx={{ width: { md: 64 }, display: { xs: 'none', md: 'block' } }} />
         </Toolbar>
       </AppBar>
 
       {/* Mobile Drawer */}
       <Drawer
         variant="temporary"
-        anchor={i18n.language === 'ar' ? 'left' : 'right'}
+        anchor="right"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{ keepMounted: true }}
