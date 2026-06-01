@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Fade } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import TypingTextSection from './TypingTextSection';
 import GallerySlider from './GallerySlider';
@@ -31,155 +32,158 @@ const useSlider = (length: number, intervalMs = 5000) => {
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === 'ar';
 
   // ── Slider 1 ── Oils / Greases / Lubricants / Coolants / Chemicals
   const slider1 = useSlider(5);
   const galleryImages1 = [
-    { src: '/oils_header.jpg', alt: 'Oils' },
-    { src: '/grease_header.jpg', alt: 'Grease' },
-    { src: '/lubricants_header.jpg', alt: 'Lubricants' },
-    { src: '/coolants_header.jpg', alt: 'Coolants' },
-    { src: '/chemicals_header.jpg', alt: 'Chemicals' },
+    { src: '/oils_header.jpg', alt: t('home.gallery1.images.oils') },
+    { src: '/grease_header.jpg', alt: t('home.gallery1.images.grease') },
+    { src: '/lubricants_header.jpg', alt: t('home.gallery1.images.lubricants') },
+    { src: '/coolants_header.jpg', alt: t('home.gallery1.images.coolants') },
+    { src: '/chemicals_header.jpg', alt: t('home.gallery1.images.chemicals') },
   ];
 
   // ── Slider 2 ── Aviation related
   const slider2 = useSlider(4);
   const galleryImages2 = [
-    { src: '/aviation.webp', alt: 'Aviation' },
-    { src: '/spareparts.webp', alt: 'Spare parts' },
-    { src: '/tools.jpg', alt: 'Tools' },
-    { src: '/equipments.avif', alt: 'Equipments' },
+    { src: '/aviation.webp', alt: t('home.gallery2.images.aviation') },
+    { src: '/spareparts.webp', alt: t('home.gallery2.images.spareParts') },
+    { src: '/tools.jpg', alt: t('home.gallery2.images.tools') },
+    { src: '/equipments.avif', alt: t('home.gallery2.images.equipment') },
   ];
 
   // ── Slider 3 ── Electrical & Communications
   const slider3 = useSlider(2);
   const galleryImages3 = [
-    { src: '/electrical.jpg', alt: 'Electrical' },
-    { src: '/electro&commu.jpg', alt: 'Electronics & Communications' },
+    { src: '/electrical.jpg', alt: t('home.gallery3.images.electrical') },
+    { src: '/electro&commu.jpg', alt: t('home.gallery3.images.electronicsCommunications') },
   ];
 
   // Typing sections data
   const typingSections = [
     {
       id: 1,
-      text: "Our Focus is on improving reliability and extending the operation life of customer products.",
-      subtitle: "Protecting and optimizing the machines that keep our country moving by offering over 500 products for a variety of industry sectors ranging from Aviation to Agriculture. Our country moving by offering over 4,500 products for a variety of industry sectors ranging from automotive to aviation."
+      text: t('home.typing.section1.text'),
+      subtitle: t('home.typing.section1.subtitle'),
     },
     {
       id: 2,
-      text: "Professional aviation solutions, Your one-stop aviation partner sectors ranging from automotive to aviation.",
-      subtitle: "We are a leading global aircraft parts supplier, offering immediate access to new and aftermarket airframe and engine components through an integrated supply chain, strong OEM relationships, ensuring part integrity, competitive prices, and minimal operational downtime for our clients."
+      text: t('home.typing.section2.text'),
+      subtitle: t('home.typing.section2.subtitle'),
     },
     {
       id: 3,
-      text: "We focus on improving innovation capabilities and industry advancement competitiveness from automotive to aviation.",
-      subtitle: "Delivering advanced electrical and electronic communication solutions, our portfolio of 4,500+ products supports critical machinery across industries ranging from Agriculture to Aerospace, helping keep operations safe, connected, and efficient."
-    }
+      text: t('home.typing.section3.text'),
+      subtitle: t('home.typing.section3.subtitle'),
+    },
   ];
 
   // Content sections data (Oil & Gas)
   const oilGasSections = [
     {
       id: 'oil',
-      title: 'Built for the Demands of Oil & Gas Operations',
-      description: 'Experience a higher standard in oil and gas services—where precision, reliability, and industry expertise come together to support your most critical operations and drive energy performance forward.',
+      title: t('home.oilGas.oil.title'),
+      description: t('home.oilGas.oil.description'),
       image: 'oils_sub-header.jpg',
-      alt: 'Oils'
+      alt: t('home.oilGas.oil.alt'),
     },
     {
       id: 'grease',
-      title: 'Greases Built for Demanding Operations',
-      description: 'Experience a higher standard in greases designed for performance and reliability, supporting critical applications and delivering consistent results under demanding conditions.',
+      title: t('home.oilGas.grease.title'),
+      description: t('home.oilGas.grease.description'),
       image: 'greases_sub-header.jpg',
-      alt: 'Greases',
-      reverse: true
+      alt: t('home.oilGas.grease.alt'),
+      reverse: true,
     },
     {
       id: 'coolants',
-      title: 'Advanced Coolants for Peak Performance',
-      description: 'Experience a higher standard in coolants designed for performance and reliability, supporting critical applications and delivering consistent results under demanding conditions.',
+      title: t('home.oilGas.coolants.title'),
+      description: t('home.oilGas.coolants.description'),
       image: 'coolants_sub-header.jpg',
-      alt: 'Coolants'
+      alt: t('home.oilGas.coolants.alt'),
     },
     {
       id: 'chemicals',
-      title: 'Innovative Chemicals for Maximum Efficiency',
-      description: 'Experience a higher standard in chemicals, designed for performance and reliability. Supporting critical applications and delivering consistent results under demanding conditions.',
+      title: t('home.oilGas.chemicals.title'),
+      description: t('home.oilGas.chemicals.description'),
       image: 'chemicals_sub-header.jpg',
-      alt: 'Chemicals',
-      reverse: true
+      alt: t('home.oilGas.chemicals.alt'),
+      reverse: true,
     },
     {
       id: 'lubricants',
-      title: 'Precision Lubricants for Reliable Operations',
-      description: 'Experience superior performance with advanced lubricants, engineered to reduce wear and maximize efficiency. Protecting critical machinery, and ensuring smooth, reliable operation under demanding conditions.',
+      title: t('home.oilGas.lubricants.title'),
+      description: t('home.oilGas.lubricants.description'),
       image: 'lubricants_sub-header.jpg',
-      alt: 'Private jet boarding'
-    }
+      alt: t('home.oilGas.lubricants.alt'),
+    },
   ];
 
   // Content sections data (Aviation)
   const aviationSections = [
     {
       id: 'aviation',
-      title: 'Precision solutions built for aviation excellence',
-      description: 'Experience the ultimate freedom of air travel with private aviation services tailored to your needs. Whether for business or leisure, enjoy a journey defined by comfort, style, and unmatched efficiency.',
+      title: t('home.aviation.aviation.title'),
+      description: t('home.aviation.aviation.description'),
       image: 'aviation_sub-header.jpg',
-      alt: 'Aviation'
+      alt: t('home.aviation.aviation.alt'),
     },
     {
       id: 'spare-parts',
-      title: 'Trusted Parts for Critical Aviation Systems',
-      description: 'Experience unmatched confidence with premium spare parts, engineered to deliver precision and reliability. Supporting critical operations with consistent performance and ensuring your business runs efficiently, every time.',
+      title: t('home.aviation.spareParts.title'),
+      description: t('home.aviation.spareParts.description'),
       image: 'spareparts_sub-header.jpg',
-      alt: 'Spare Parts',
-      reverse: true
+      alt: t('home.aviation.spareParts.alt'),
+      reverse: true,
     },
     {
       id: 'tools',
-      title: 'Reliable Tools for Critical Operations',
-      description: 'Experience unmatched confidence with premium tools, engineered for precision, durability, and reliability. Supporting critical operations with consistent performance and ensuring your business runs efficiently, every time.',
+      title: t('home.aviation.tools.title'),
+      description: t('home.aviation.tools.description'),
       image: 'tools_sub-header.webp',
-      alt: 'Tools'
+      alt: t('home.aviation.tools.alt'),
     },
     {
       id: 'equipment',
-      title: 'Advanced Equipment for Maximum Efficiency',
-      description: 'Experience reliable, high-performance equipment, built for precision, strength, and dependability. Supporting essential operations with consistent results and keeping your business running efficiently.',
+      title: t('home.aviation.equipment.title'),
+      description: t('home.aviation.equipment.description'),
       image: 'equipments_sub-header.jpg',
-      alt: 'Equipments',
-      reverse: true
-    }
+      alt: t('home.aviation.equipment.alt'),
+      reverse: true,
+    },
   ];
 
   // Content sections data (Electrical and Electronics & Communications)
   const electricalSections = [
     {
       id: 'electrical',
-      title: 'Advanced Electrical for Peak Performance',
-      description: 'Experience reliable, high-performance electrical equipment, engineered for precision, strength, and durability. Supporting critical operations with consistent results and keeping your business running efficiently.',
+      title: t('home.electrical.electrical.title'),
+      description: t('home.electrical.electrical.description'),
       image: 'electrical_sub-header.jpg',
-      alt: 'Electricals'
+      alt: t('home.electrical.electrical.alt'),
     },
     {
-      id: 'electronics & communications',
-      title: 'Electronics Solutions & Communications',
-      description: 'Experience reliable, high-performance electronic systems, engineered for precision, durability, and efficiency. Deliver dependable, high-performance communication solutions, designed for accuracy, resilience, and seamless operation.',
+      id: 'electronics-communications',
+      title: t('home.electrical.electronicsCommunications.title'),
+      description: t('home.electrical.electronicsCommunications.description'),
       image: 'electro&commu_sub-header.jpg',
-      alt: 'Electronics & Communications',
-      reverse: true
+      alt: t('home.electrical.electronicsCommunications.alt'),
+      reverse: true,
     },
   ];
 
   return (
     <Fade in timeout={2000}>
-      <Box>
+      <Box sx={{ direction: isArabic ? 'rtl' : 'ltr' }}>
         <HeroSection navigate={navigate} />
 
         <TypingTextSection section={typingSections[0]} />
 
         <GallerySlider
-          title="Oils, Greases, Lubricants, Coolants, Chemicals"
+          title={t('home.gallery1.title')}
           images={galleryImages1}
           currentSlide={slider1.current}
           onNext={slider1.goToNext}
@@ -187,7 +191,6 @@ const HomePage = () => {
           onDotClick={slider1.goToIndex}
         />
 
-        {/* Only meaningful gap – after slider before content cards */}
         <Box sx={{ mt: { xs: 3, md: 1 } }} />
 
         {oilGasSections.map((section, index) => (
@@ -197,7 +200,7 @@ const HomePage = () => {
         <TypingTextSection section={typingSections[1]} />
 
         <GallerySlider
-          title="Aviation, Spare Parts, Tools, Equipment"
+          title={t('home.gallery2.title')}
           images={galleryImages2}
           currentSlide={slider2.current}
           onNext={slider2.goToNext}
@@ -214,7 +217,7 @@ const HomePage = () => {
         <TypingTextSection section={typingSections[2]} />
 
         <GallerySlider
-          title="Electrical, Electronics & Communications"
+          title={t('home.gallery3.title')}
           images={galleryImages3}
           currentSlide={slider3.current}
           onNext={slider3.goToNext}
@@ -230,7 +233,6 @@ const HomePage = () => {
 
         <FeaturesSection />
 
-        {/* Small bottom padding so last section doesn't stick to edge */}
         <Box sx={{ mb: { xs: 4, md: 6 } }} />
       </Box>
     </Fade>

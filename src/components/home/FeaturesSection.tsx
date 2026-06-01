@@ -1,21 +1,57 @@
 import React from 'react';
 import { Box, Container, Typography, Grid, Card, Slide } from '@mui/material';
 import { Flight, Engineering, Security, Speed } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 const FeaturesSection: React.FC = () => {
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === 'ar';
+
   const features = [
-    { icon: <Flight sx={{ fontSize: 60 }} />, title: 'Modern Fleet', desc: 'State-of-the-art aircraft with advanced technology and safety features.' },
-    { icon: <Security sx={{ fontSize: 60 }} />, title: 'Safety First', desc: 'Rigorous safety protocols and certified maintenance.' },
-    { icon: <Speed sx={{ fontSize: 60 }} />, title: 'Fast Service', desc: 'Quick turnaround times and efficient operations.' },
-    { icon: <Engineering sx={{ fontSize: 60 }} />, title: 'Expert Team', desc: 'Highly trained professionals with decades of experience.' },
+    {
+      icon: <Flight sx={{ fontSize: 60 }} />,
+      title: t('home.features.modernFleet.title'),
+      desc: t('home.features.modernFleet.desc'),
+    },
+    {
+      icon: <Security sx={{ fontSize: 60 }} />,
+      title: t('home.features.safetyFirst.title'),
+      desc: t('home.features.safetyFirst.desc'),
+    },
+    {
+      icon: <Speed sx={{ fontSize: 60 }} />,
+      title: t('home.features.fastService.title'),
+      desc: t('home.features.fastService.desc'),
+    },
+    {
+      icon: <Engineering sx={{ fontSize: 60 }} />,
+      title: t('home.features.expertTeam.title'),
+      desc: t('home.features.expertTeam.desc'),
+    },
   ];
 
   return (
     <Container maxWidth="lg">
-      <Box sx={{ py: 4 }}>
-        <Typography variant="h4" align="center" sx={{ mb: 6, fontWeight: 'bold', color: '#222' }}>
-          Why Choose Aero Advance Technologies
+      <Box
+        sx={{
+          py: 4,
+          direction: isArabic ? 'rtl' : 'ltr',
+        }}
+      >
+        <Typography
+          variant="h4"
+          align="center"
+          sx={{
+            mb: 6,
+            fontWeight: 'bold',
+            color: '#222',
+            lineHeight: isArabic ? 1.5 : 1.2,
+          }}
+        >
+          {t('home.features.title')}
         </Typography>
+
         <Grid container spacing={4}>
           {features.map((item, idx) => (
             <Grid item xs={12} sm={6} md={3} key={idx}>
@@ -32,10 +68,25 @@ const FeaturesSection: React.FC = () => {
                   }}
                 >
                   <Box sx={{ color: '#0066cc', mb: 3 }}>{item.icon}</Box>
-                  <Typography variant="h6" gutterBottom fontWeight="bold">
+
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    fontWeight="bold"
+                    sx={{
+                      lineHeight: isArabic ? 1.6 : 1.3,
+                    }}
+                  >
                     {item.title}
                   </Typography>
-                  <Typography variant="body1" color="text.secondary">
+
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{
+                      lineHeight: isArabic ? 1.9 : 1.6,
+                    }}
+                  >
                     {item.desc}
                   </Typography>
                 </Card>

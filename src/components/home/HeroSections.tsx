@@ -1,11 +1,16 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface HeroSectionProps {
   navigate: (path: string) => void;
 }
 
 const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === 'ar';
+
   return (
     <Box
       sx={{
@@ -19,7 +24,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
         color: 'white',
         overflowX: 'hidden',
         overflowY: 'auto',
-        width: '100%'
+        width: '100%',
+        direction: isArabic ? 'rtl' : 'ltr',
       }}
     >
       <Box
@@ -51,20 +57,21 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
       />
 
       <Box sx={{ position: 'relative', zIndex: 2, px: 3 }}>
-         <Typography
-        variant="h2"
-       sx={{
-      fontWeight: 800,
-      fontSize: { xs: '2.8rem', sm: '3.5rem', md: '6rem' },
-      lineHeight: 1.1,
-      textShadow: '0 4px 20px rgba(0,0,0,0.9)',
-      hyphens: 'auto',
-      maxWidth: '100%',
-      mx: 'auto',
-      }}
-      >
-    Aero Advance Technologies
-  </Typography>
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 800,
+            fontSize: { xs: '2.8rem', sm: '3.5rem', md: '6rem' },
+            lineHeight: 1.1,
+            textShadow: '0 4px 20px rgba(0,0,0,0.9)',
+            hyphens: 'auto',
+            maxWidth: '100%',
+            mx: 'auto',
+          }}
+        >
+          {t('home.hero.title')}
+        </Typography>
+
         <Typography
           variant="h5"
           sx={{
@@ -73,8 +80,9 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
             fontWeight: 500,
           }}
         >
-          Excellence in Aviation Maintenance & Solutions
+          {t('home.hero.subtitle')}
         </Typography>
+
         <Button
           variant="contained"
           size="large"
@@ -97,7 +105,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
             },
           }}
         >
-          Get Started
+          {t('home.hero.cta')}
         </Button>
       </Box>
     </Box>

@@ -1,8 +1,12 @@
 import React from 'react';
-import { Box, Container, Typography, Fade, Link } from '@mui/material';
-import { Link as RouterLink } from 'react-router-dom';
+import { Box, Container, Typography, Fade } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const ContactHero: React.FC = () => {
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === 'ar';
+
   return (
     <Box
       sx={{
@@ -11,13 +15,13 @@ const ContactHero: React.FC = () => {
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'flex-end',
-        justifyContent: 'flex-start',
+        justifyContent: isArabic ? 'flex-end' : 'flex-start',
         backgroundImage: `url('./contact_img.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
+        direction: isArabic ? 'rtl' : 'ltr',
       }}
     >
-      {/* Dark Overlay for Text Readability */}
       <Box
         sx={{
           position: 'absolute',
@@ -30,77 +34,33 @@ const ContactHero: React.FC = () => {
         }}
       />
 
-      {/* Content Container */}
-      <Container 
-        maxWidth="lg" 
-        sx={{ 
-          position: 'relative', 
-          zIndex: 2, 
-          pb: { xs: 6, md: 10 } 
+      <Container
+        maxWidth="lg"
+        sx={{
+          position: 'relative',
+          zIndex: 2,
+          pb: { xs: 6, md: 10 },
         }}
       >
         <Fade in timeout={1200}>
-          <Box>
-            {/* Clickable Breadcrumb */}
-            {/* <Typography
-              variant="body1"
-              sx={{
-                color: 'white',
-                mb: 4,
-                letterSpacing: '2px',
-                fontSize: { xs: '0.9rem', md: '1rem' },
-                opacity: 0.9,
-              }}
-            >
-              <Link
-                component={RouterLink}
-                to="/"
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  '&:hover': { textDecoration: 'underline' },
-                }}
-              >
-                HOME
-              </Link>
-              {' > '}
-              <Link
-                component={RouterLink}
-                to="/services"
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  '&:hover': { textDecoration: 'underline' },
-                }}
-              >
-                SERVICES
-              </Link>
-              {' > '}
-              <Link
-                component={RouterLink}
-                to="/contact us"
-                sx={{
-                  color: 'white',
-                  textDecoration: 'none',
-                  '&:hover': { textDecoration: 'underline' },
-                }}
-              >
-                CONTACT US
-              </Link>
-            </Typography> */}
-
-            {/* Main Title */}
+          <Box
+            sx={{
+              textAlign: isArabic ? 'right' : 'left',
+            }}
+          >
             <Typography
               variant="h2"
               sx={{
                 color: 'white',
                 fontWeight: 'bold',
                 fontSize: { xs: '3rem', md: '5rem' },
-                lineHeight: 1.1,
-                maxWidth: '80%',
+                lineHeight: isArabic ? 1.35 : 1.1,
+                maxWidth: { xs: '100%', md: '80%' },
+                ml: isArabic ? 'auto' : 0,
+                mr: isArabic ? 0 : 'auto',
               }}
             >
-              360° Support and Services
+              {t('contact.heroTitle')}
             </Typography>
           </Box>
         </Fade>

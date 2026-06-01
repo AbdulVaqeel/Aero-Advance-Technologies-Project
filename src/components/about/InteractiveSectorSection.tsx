@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Box, Typography, ButtonBase } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface Sector {
   title: string;
@@ -21,13 +22,21 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
   reverse = false,
   title,
 }) => {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+
   const [activeSector, setActiveSector] = useState(0);
   const current = sectors[activeSector];
 
   const gridDirection = reverse ? 'row-reverse' : 'row';
 
   return (
-    <Box sx={{ mb: 12 }}>
+    <Box
+      sx={{
+        mb: 12,
+        direction: isArabic ? 'rtl' : 'ltr',
+      }}
+    >
       {title && (
         <Typography
           variant="h3"
@@ -36,6 +45,7 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
             mb: { xs: 5, md: 7 },
             fontWeight: 700,
             fontSize: { xs: '2.2rem', md: '3.2rem' },
+            lineHeight: isArabic ? 1.5 : 1.2,
           }}
         >
           {title}
@@ -47,7 +57,7 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
           <Box
             sx={{
               position: 'relative',
-              height: { xs: '460px', sm: '520px', md: '620px' }, // taller → more room for text
+              height: { xs: '460px', sm: '520px', md: '620px' },
               borderRadius: 4,
               overflow: 'hidden',
               boxShadow: '0 12px 40px rgba(0,0,0,0.2)',
@@ -65,27 +75,27 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
               }}
             />
 
-            {/* Overlay – structured with flex column */}
             <Box
               sx={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(to top, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, transparent 100%)',
+                background:
+                  'linear-gradient(to top, rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.4) 70%, transparent 100%)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
                 p: { xs: 4, md: 6 },
                 pb: { xs: 5, md: 7 },
+                textAlign: isArabic ? 'right' : 'left',
               }}
             >
-              {/* Large title – smaller on mobile, no overlap */}
               <Typography
                 variant="h2"
                 sx={{
                   color: 'white',
                   fontWeight: 800,
                   fontSize: { xs: '2.4rem', sm: '3rem', md: '4.8rem' },
-                  lineHeight: 1,
+                  lineHeight: isArabic ? 1.25 : 1,
                   mb: { xs: 2, md: 3 },
                   textShadow: '0 4px 16px rgba(0,0,0,0.7)',
                   pointerEvents: 'none',
@@ -94,13 +104,13 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
                 {current.title}
               </Typography>
 
-              {/* Description – scrollable container if too long */}
               <Box
                 sx={{
                   overflowY: 'auto',
-                  maxHeight: { xs: '180px', md: '240px' }, // adjust based on your longest text
+                  maxHeight: { xs: '180px', md: '240px' },
                   WebkitOverflowScrolling: 'touch',
-                  pr: 1.5, // space for scrollbar
+                  pr: isArabic ? 0 : 1.5,
+                  pl: isArabic ? 1.5 : 0,
                 }}
               >
                 <Typography
@@ -108,8 +118,10 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
                   sx={{
                     color: 'white',
                     fontSize: { xs: '1.05rem', md: '1.3rem' },
-                    lineHeight: 1.65,
+                    lineHeight: isArabic ? 1.9 : 1.65,
                     maxWidth: '92%',
+                    ml: isArabic ? 'auto' : 0,
+                    mr: isArabic ? 0 : 'auto',
                   }}
                 >
                   {current.text}
@@ -145,10 +157,11 @@ const InteractiveSectorSection: React.FC<InteractiveSectorSectionProps> = ({
                   transition: 'all 0.3s ease',
                   textAlign: 'center',
                   fontSize: { xs: '1.1rem', md: '1.25rem' },
+                  lineHeight: isArabic ? 1.8 : 1.4,
                   border: activeSector === idx ? `2px solid ${sector.hoverColor}` : '1px solid transparent',
                   '&:hover': {
                     bgcolor: `${sector.hoverColor}25`,
-                    transform: 'translateX(6px)',
+                    transform: isArabic ? 'translateX(-6px)' : 'translateX(6px)',
                     boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
                   },
                 }}

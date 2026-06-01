@@ -2,42 +2,78 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Link as MuiLink } from '@mui/material';
 import { Flight, Facebook, Twitter, LinkedIn, Instagram } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === 'ar';
 
   const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Services', path: '/services' },
-    { name: 'Our Partners', path: '/partners' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.productsServices'), path: '/services' },
+    { name: t('nav.ourPartners'), path: '/partners' },
+    { name: t('nav.contactUs'), path: '/contact' },
+  ];
+
+  const services = [
+    { name: t('footer.services.oilLubricant'), id: 'oil-and-lubricant' },
+    { name: t('footer.services.defenceAviation'), id: 'defence-and-aviation' },
+    { name: t('footer.services.electricals'), id: 'electricals' },
   ];
 
   return (
-    <Box sx={{ bgcolor: '#1a1a1a', color: 'white', py: 6, mt: 'auto' }}>
+    <Box
+      sx={{
+        bgcolor: '#1a1a1a',
+        color: 'white',
+        py: 6,
+        mt: 'auto',
+        direction: isArabic ? 'rtl' : 'ltr',
+      }}
+    >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
           {/* Company Info */}
           <Grid item xs={12} md={4}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-              <Flight sx={{ fontSize: 30, mr: 1 }} />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                mb: 2,
+                justifyContent: { xs: 'center', md: isArabic ? 'flex-end' : 'flex-start' },
+                textAlign: { xs: 'center', md: isArabic ? 'right' : 'left' },
+              }}
+            >
+              <Flight sx={{ fontSize: 30, mr: isArabic ? 0 : 1, ml: isArabic ? 1 : 0 }} />
               <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
-                Aero Advance Technologies
+                {t('footer.companyName')}
               </Typography>
             </Box>
-            <Typography variant="body2" sx={{ mb: 2, color: '#b0b0b0' }}>
-              Leading the way in aviation excellence since 1995. Your trusted partner for all aviation needs.
+
+            <Typography
+              variant="body2"
+              sx={{
+                mb: 2,
+                color: '#b0b0b0',
+                textAlign: { xs: 'center', md: isArabic ? 'right' : 'left' },
+                lineHeight: isArabic ? 1.9 : 1.6,
+              }}
+            >
+              {t('footer.companyDescription')}
             </Typography>
 
-            {/* Social Media Icons – White by default, Blue on hover */}
-            <Box sx={{ display: 'flex', gap: 2.5 }}>
-              <MuiLink
-                href="#"
-                // target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
+            {/* Social Media Icons */}
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 2.5,
+                justifyContent: { xs: 'center', md: isArabic ? 'flex-end' : 'flex-start' },
+              }}
+            >
+              <MuiLink href="#" rel="noopener noreferrer" aria-label="Facebook">
                 <Facebook
                   sx={{
                     fontSize: 28,
@@ -48,12 +84,7 @@ const Footer: React.FC = () => {
                 />
               </MuiLink>
 
-              <MuiLink
-                href="#"
-                // target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Twitter"
-              >
+              <MuiLink href="#" rel="noopener noreferrer" aria-label="Twitter">
                 <Twitter
                   sx={{
                     fontSize: 28,
@@ -64,12 +95,7 @@ const Footer: React.FC = () => {
                 />
               </MuiLink>
 
-              <MuiLink
-                href="#"
-                // target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
+              <MuiLink href="#" rel="noopener noreferrer" aria-label="LinkedIn">
                 <LinkedIn
                   sx={{
                     fontSize: 28,
@@ -80,12 +106,7 @@ const Footer: React.FC = () => {
                 />
               </MuiLink>
 
-              <MuiLink
-                href="#"
-                // target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
+              <MuiLink href="#" rel="noopener noreferrer" aria-label="Instagram">
                 <Instagram
                   sx={{
                     fontSize: 28,
@@ -103,18 +124,33 @@ const Footer: React.FC = () => {
             <Grid container spacing={4}>
               {/* Quick Links */}
               <Grid item xs={12} sm={4}>
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Quick Links
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 2,
+                    fontWeight: 'bold',
+                    textAlign: { xs: 'center', sm: isArabic ? 'right' : 'left' },
+                  }}
+                >
+                  {t('footer.quickLinksTitle')}
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
+
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 1.2,
+                    alignItems: { xs: 'center', sm: isArabic ? 'flex-end' : 'flex-start' },
+                  }}
+                >
                   {quickLinks.map((item) => (
                     <MuiLink
-                      key={item.name}
+                      key={item.path}
                       component="button"
                       onClick={() => navigate(item.path)}
                       underline="none"
                       sx={{
-                        textAlign: 'left',
+                        textAlign: isArabic ? 'right' : 'left',
                         color: '#b0b0b0',
                         background: 'none',
                         border: 'none',
@@ -129,56 +165,106 @@ const Footer: React.FC = () => {
                 </Box>
               </Grid>
 
-            {/* Our Services */}
-<Grid item xs={12} sm={4}>
-  <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-    Our Services
-  </Typography>
-  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.2 }}>
-    {[
-      { name: 'Oil and Lubricant', id: 'oil-and-lubricant' },
-      { name: 'Defence and Aviation', id: 'defence-and-aviation' },
-      { name: 'Electricals', id: 'electricals' },
-    ].map((service) => (
-      <MuiLink
-        key={service.name}
-        component="button"
-        onClick={() => navigate(`/services#${service.id}`)}
-        underline="none"
-        sx={{
-          textAlign: 'left',
-          color: '#b0b0b0',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          font: 'inherit',
-          '&:hover': { color: '#667eea' },
-        }}
-      >
-        {service.name}
-      </MuiLink>
-    ))}
-  </Box>
-</Grid>
+              {/* Our Services */}
+              <Grid item xs={12} sm={4}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 2,
+                    fontWeight: 'bold',
+                    textAlign: { xs: 'center', sm: isArabic ? 'right' : 'left' },
+                  }}
+                >
+                  {t('footer.ourServicesTitle')}
+                </Typography>
+
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 1.2,
+                    alignItems: { xs: 'center', sm: isArabic ? 'flex-end' : 'flex-start' },
+                  }}
+                >
+                  {services.map((service) => (
+                    <MuiLink
+                      key={service.id}
+                      component="button"
+                      onClick={() => navigate(`/services#${service.id}`)}
+                      underline="none"
+                      sx={{
+                        textAlign: isArabic ? 'right' : 'left',
+                        color: '#b0b0b0',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        font: 'inherit',
+                        '&:hover': { color: '#667eea' },
+                      }}
+                    >
+                      {service.name}
+                    </MuiLink>
+                  ))}
+                </Box>
+              </Grid>
+
               {/* Contact */}
               <Grid item xs={12} sm={4}>
-                <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
-                  Contact us
+                <Typography
+                  variant="h6"
+                  sx={{
+                    mb: 2,
+                    fontWeight: 'bold',
+                    textAlign: { xs: 'center', sm: isArabic ? 'right' : 'left' },
+                  }}
+                >
+                  {t('footer.contactTitle')}
                 </Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
-                  <Typography variant="body2" sx={{ color: '#b0b0b0', fontSize: '15px', lineHeight: 1.6 }}>
-                    114 Al Morabba, Riyadh - 12552,<br />
-                    Kingdom of Saudi Arabia
+
+                <Box
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 1.5,
+                    alignItems: { xs: 'center', sm: isArabic ? 'flex-end' : 'flex-start' },
+                    textAlign: { xs: 'center', sm: isArabic ? 'right' : 'left' },
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: '#b0b0b0',
+                      fontSize: '15px',
+                      lineHeight: isArabic ? 1.9 : 1.6,
+                    }}
+                  >
+                    {t('footer.addressLine1')}
+                    <br />
+                    {t('footer.addressLine2')}
                   </Typography>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Typography variant="body2" sx={{ color: '#b0b0b0' }}>Mobile:</Typography>
-                    <MuiLink href="tel:+966546008481" underline="none" sx={{ color: '#b0b0b0', '&:hover': { color: '#667eea' } }}>
+
+                  <Box sx={{ display: 'flex', gap: 1, flexDirection: isArabic ? 'row-reverse' : 'row' }}>
+                    <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
+                      {t('footer.mobileLabel')}
+                    </Typography>
+                    <MuiLink
+                      href="tel:+966556007891"
+                      underline="none"
+                      sx={{ color: '#b0b0b0', '&:hover': { color: '#667eea' } }}
+                    >
                       +966 55600 7891
                     </MuiLink>
                   </Box>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Typography variant="body2" sx={{ color: '#b0b0b0' }}>Email:</Typography>
-                    <MuiLink href="mailto:abdulvaqeel9636@gmail.com" underline="none" sx={{ color: '#b0b0b0', '&:hover': { color: '#667eea' } }}>
+
+                  <Box sx={{ display: 'flex', gap: 1, flexDirection: isArabic ? 'row-reverse' : 'row' }}>
+                    <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
+                      {t('footer.emailLabel')}
+                    </Typography>
+                    <MuiLink
+                      href="mailto:client@gmail.com"
+                      underline="none"
+                      sx={{ color: '#b0b0b0', '&:hover': { color: '#667eea' } }}
+                    >
                       client@gmail.com
                     </MuiLink>
                   </Box>
@@ -189,8 +275,8 @@ const Footer: React.FC = () => {
         </Grid>
 
         <Box sx={{ borderTop: '1px solid #333', mt: 6, pt: 3, textAlign: 'center' }}>
-          <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
-            © 2026 Aero Advance Technologies. All rights reserved. | Privacy Policy | Terms of Service
+          <Typography variant="body2" sx={{ color: '#b0b0b0', lineHeight: isArabic ? 1.8 : 1.5 }}>
+            {t('footer.copyright')}
           </Typography>
         </Box>
       </Container>

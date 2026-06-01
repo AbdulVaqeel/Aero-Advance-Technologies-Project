@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 
 interface ContentSectionProps {
   section: {
@@ -15,24 +16,38 @@ interface ContentSectionProps {
 }
 
 const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }) => {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+
   const [ref, inView] = useInView({
     threshold: 0.15,
     triggerOnce: true,
   });
 
-  // Small upward shift – keeps the floating look without big gaps
   const transformStyle = { xs: 'translateY(-20px)', md: 'translateY(-30px)' };
 
-  const imageTransition = section.reverse ? 'translateX(100%)' : 'translateX(-100%)';
-  const textTransition = section.reverse ? 'translateX(-100%)' : 'translateX(100%)';
+  const imageTransition = isArabic
+  ? section.reverse
+    ? 'translateX(-100%)'
+    : 'translateX(100%)'
+  : section.reverse
+    ? 'translateX(100%)'
+    : 'translateX(-100%)';
+
+const textTransition = isArabic
+  ? section.reverse
+    ? 'translateX(100%)'
+    : 'translateX(-100%)'
+  : section.reverse
+    ? 'translateX(-100%)'
+    : 'translateX(100%)';
 
   return (
     <Box
       ref={ref}
       sx={{
-        // Much tighter vertical spacing
         pt: {
-          xs: sectionIndex === 1 ? 5 : 3,      // first section still slightly more
+          xs: sectionIndex === 1 ? 5 : 3,
           md: sectionIndex === 1 ? 7 : 4,
         },
         pb: {
@@ -42,13 +57,14 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
         bgcolor: '#F2F8FF',
         transform: transformStyle,
         overflow: 'hidden',
+        direction: isArabic ? 'rtl' : 'ltr',
       }}
     >
       <Container maxWidth="lg">
         <Grid
           container
           alignItems="center"
-          spacing={{ xs: 3, md: 5 }}          // reduced horizontal gap between image & text
+          spacing={{ xs: 3, md: 5 }}
           direction={section.reverse ? 'row-reverse' : 'row'}
         >
           <Grid item xs={12} md={6}>
@@ -85,6 +101,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
                 transition: 'all 0.9s ease-out',
                 transitionDelay: section.reverse ? '0.25s' : '0.4s',
                 px: { xs: 1, md: 0 },
+                textAlign: isArabic ? 'right' : 'left',
               }}
             >
               <Typography
@@ -92,18 +109,27 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
                 sx={{
                   fontWeight: 700,
                   color: '#8B4513',
-                  mb: 1,                    // reduced margin below title
+                  mb: 1,
                   fontSize: { xs: '1.6rem', sm: '1.9rem', md: '2.9rem' },
                   lineHeight: 1.2,
-                  "&:hover": {
-                    color:"navy"
-                  }
+                  '&:hover': {
+                    color: 'navy',
+                  },
                 }}
               >
                 {section.title}
               </Typography>
 
-              <Box sx={{ height: 3, width: 70, bgcolor: '#D4AF37', mb: 2 }} /> {/* tighter spacing */}
+              <Box
+                sx={{
+                  height: 3,
+                  width: 70,
+                  bgcolor: '#D4AF37',
+                  mb: 2,
+                  ml: isArabic ? 'auto' : 0,
+                  mr: isArabic ? 0 : 'auto',
+                }}
+              />
 
               <Typography
                 variant="body1"
@@ -111,9 +137,9 @@ const ContentSection: React.FC<ContentSectionProps> = ({ section, sectionIndex }
                   fontSize: { xs: '1rem', md: '1.3rem' },
                   lineHeight: 1.65,
                   color: '#444',
-                  "&:hover": {
-                    color:"navy"
-                  }
+                  '&:hover': {
+                    color: 'navy',
+                  },
                 }}
               >
                 {section.description}

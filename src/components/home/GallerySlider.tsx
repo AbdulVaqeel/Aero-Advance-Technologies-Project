@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box, Container, Typography, IconButton } from '@mui/material';
 import { ChevronLeft, ChevronRight } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 interface GalleryImage {
   src: string;
@@ -24,11 +25,19 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
   onPrev,
   onDotClick,
 }) => {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+
   // Safeguard against invalid index
   const safeIndex = Math.max(0, Math.min(currentSlide, images.length - 1));
 
   return (
-    <Box sx={{ my: { xs: 6, md: 10 } }}>
+    <Box
+      sx={{
+        my: { xs: 6, md: 10 },
+        direction: isArabic ? 'rtl' : 'ltr',
+      }}
+    >
       <Container maxWidth="lg" sx={{ mb: { xs: 4, md: 6 } }}>
         <Typography
           variant="h2"
@@ -37,7 +46,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
             fontSize: { xs: '1.8rem', sm: '2.4rem', md: '3rem' },
             fontWeight: 700,
             color: '#031852ff',
-            lineHeight: 1.2,
+            lineHeight: isArabic ? 1.4 : 1.2,
           }}
         >
           {title}
@@ -61,7 +70,9 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
           sx={{
             display: 'flex',
             transition: 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-            transform: `translateX(-${safeIndex * 100}%)`,
+            transform: isArabic
+              ? `translateX(${safeIndex * 100}%)`
+              : `translateX(-${safeIndex * 100}%)`,
           }}
         >
           {images.map((img, idx) => (
@@ -93,7 +104,8 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
           disabled={safeIndex === 0}
           sx={{
             position: 'absolute',
-            left: { xs: 12, md: 32 },
+            left: isArabic ? 'auto' : { xs: 12, md: 32 },
+            right: isArabic ? { xs: 12, md: 32 } : 'auto',
             top: '50%',
             transform: 'translateY(-50%)',
             bgcolor: 'rgba(0,0,0,0.55)',
@@ -103,7 +115,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
             zIndex: 10,
           }}
         >
-          <ChevronLeft fontSize="large" />
+          {isArabic ? <ChevronRight fontSize="large" /> : <ChevronLeft fontSize="large" />}
         </IconButton>
 
         {/* Next Button */}
@@ -112,7 +124,8 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
           disabled={safeIndex === images.length - 1}
           sx={{
             position: 'absolute',
-            right: { xs: 12, md: 32 },
+            right: isArabic ? 'auto' : { xs: 12, md: 32 },
+            left: isArabic ? { xs: 12, md: 32 } : 'auto',
             top: '50%',
             transform: 'translateY(-50%)',
             bgcolor: 'rgba(0,0,0,0.55)',
@@ -122,7 +135,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
             zIndex: 10,
           }}
         >
-          <ChevronRight fontSize="large" />
+          {isArabic ? <ChevronLeft fontSize="large" /> : <ChevronRight fontSize="large" />}
         </IconButton>
 
         {/* Dots */}
@@ -134,6 +147,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
               left: '50%',
               transform: 'translateX(-50%)',
               display: 'flex',
+              flexDirection: isArabic ? 'row-reverse' : 'row',
               gap: { xs: 1.5, md: 2 },
               zIndex: 10,
             }}

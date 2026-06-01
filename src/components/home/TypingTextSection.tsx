@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Container, Typography } from '@mui/material';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 
 interface TypingTextSectionProps {
   section: {
@@ -11,10 +12,13 @@ interface TypingTextSectionProps {
 }
 
 const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === 'ar';
+
   const [displayedText, setDisplayedText] = useState('');
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const indexRef = useRef<number>(0);
-  
+
   const { ref, inView } = useInView({
     threshold: 0.25,
     triggerOnce: false,
@@ -40,7 +44,7 @@ const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
           intervalRef.current = null;
         }
       }
-    }, 35);
+    }, isArabic ? 45 : 35);
   };
 
   useEffect(() => {
@@ -61,10 +65,16 @@ const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
         intervalRef.current = null;
       }
     };
-  }, [inView, section.text]);
+  }, [inView, section.text, isArabic]);
 
   return (
-    <Box ref={ref} sx={{ bgcolor: 'white' }}>
+    <Box
+      ref={ref}
+      sx={{
+        bgcolor: 'white',
+        direction: isArabic ? 'rtl' : 'ltr',
+      }}
+    >
       <Container maxWidth="lg">
         <Box
           sx={{
@@ -80,9 +90,10 @@ const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
               fontWeight: 500,
               fontSize: { xs: '2.2rem', sm: '3.2rem', md: '4.2rem' },
               color: '#003366',
-              lineHeight: 1.2,
+              lineHeight: isArabic ? 1.45 : 1.2,
               whiteSpace: 'pre-wrap',
               minHeight: '1.2em',
+              textAlign: 'center',
             }}
           >
             {displayedText}
@@ -93,7 +104,7 @@ const TypingTextSection: React.FC<TypingTextSectionProps> = ({ section }) => {
             sx={{
               py: { xs: 1, md: 3 },
               fontSize: '1.35rem',
-              lineHeight: 1.8,
+              lineHeight: isArabic ? 2 : 1.8,
               color: '#0b0258ff',
               maxWidth: { md: '900px' },
               mx: 'auto',

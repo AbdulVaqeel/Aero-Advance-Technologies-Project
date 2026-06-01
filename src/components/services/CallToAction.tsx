@@ -1,21 +1,33 @@
 import React from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
-import { CallEnd, CallEndOutlined, CallMadeRounded, PhoneAndroid } from '@mui/icons-material';
+import { PhoneAndroid } from '@mui/icons-material';
+import { useTranslation } from 'react-i18next';
 
 interface CallToActionProps {
   navigate: (path: string) => void;
 }
 
 const CallToAction: React.FC<CallToActionProps> = ({ navigate }) => {
+  const { t, i18n } = useTranslation();
+
+  const isArabic = i18n.language === 'ar';
+
   return (
-    <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        mt: 8,
+        mb: 8,
+        direction: isArabic ? 'rtl' : 'ltr',
+      }}
+    >
       <Box
         sx={{
           p: 6,
           borderRadius: 2,
           textAlign: 'center',
           color: 'white',
-          backgroundImage: 'url("contact_anytime.jpg")', 
+          backgroundImage: 'url("contact_anytime.jpg")',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -34,12 +46,27 @@ const CallToAction: React.FC<CallToActionProps> = ({ navigate }) => {
         }}
       >
         <Box sx={{ position: 'relative', zIndex: 2 }}>
-          <Typography variant="h4" sx={{ mb: 2, fontWeight: 'bold' }}>
-            Ready to Elevate Your Aviation Experience?
+          <Typography
+            variant="h4"
+            sx={{
+              mb: 2,
+              fontWeight: 'bold',
+              lineHeight: isArabic ? 1.6 : 1.3,
+            }}
+          >
+            {t('services.cta.title')}
           </Typography>
-          <Typography variant="h6" sx={{ mb: 3 }}>
-            Contact us today to discuss your aviation needs
+
+          <Typography
+            variant="h6"
+            sx={{
+              mb: 3,
+              lineHeight: isArabic ? 1.8 : 1.5,
+            }}
+          >
+            {t('services.cta.subtitle')}
           </Typography>
+
           <Button
             variant="contained"
             size="large"
@@ -49,6 +76,7 @@ const CallToAction: React.FC<CallToActionProps> = ({ navigate }) => {
               px: 3,
               py: 1.3,
               fontSize: '1.1rem',
+              textTransform: 'none',
               '&:hover': {
                 bgcolor: '#fbfbfc',
                 transform: 'scale(1.05)',
@@ -56,15 +84,17 @@ const CallToAction: React.FC<CallToActionProps> = ({ navigate }) => {
             }}
             onClick={() => navigate('/contact')}
           >
-            Get In Touch
+            {t('services.cta.button')}
+
             <Box
-            sx={{
-              ml:1,
-              mt:1
-            }}
+              sx={{
+                ml: isArabic ? 0 : 1,
+                mr: isArabic ? 1 : 0,
+                mt: 1,
+              }}
             >
-            <PhoneAndroid />  
-            </Box> 
+              <PhoneAndroid />
+            </Box>
           </Button>
         </Box>
       </Box>
