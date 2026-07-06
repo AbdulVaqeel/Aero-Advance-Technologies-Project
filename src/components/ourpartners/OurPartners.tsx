@@ -47,7 +47,7 @@ const OurPartners = () => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'scroll',
-          filter: 'brightness(0.85) contrast(1.05)',
+          filter: 'brightness(1.50) contrast(1.05)',
           transform: 'translateZ(0)',
           willChange: 'auto',
         }}
@@ -98,38 +98,38 @@ const OurPartners = () => {
           </Fade>
 
           <Zoom in timeout={900}>
-            <motion.h3
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: 'easeOut' }}
-              style={{ margin: 0 }}
-            >
-              <Typography
-                variant="h3"
-                fontWeight={800}
-                gutterBottom
-                sx={{
-                  color: '#ffffff',
-                  textShadow: '0 4px 20px rgba(0,0,0,0.6)',
-                  fontSize: { xs: '2.2rem', md: '3.6rem' },
-                  lineHeight: isArabic ? 1.5 : 1.2,
-                }}
-              >
-                {t('partners.titlePrefix')}{' '}
-                <Box
-                  component="span"
-                  sx={{
-                    background: `linear-gradient(135deg, #b3e0ff, ${primaryLight})`,
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  {t('partners.titleHighlight')}
-                </Box>
-              </Typography>
-            </motion.h3>
-          </Zoom>
+  <motion.h3
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 0.6 }}
+    style={{ margin: 0 }}
+  >
+    <Typography
+      variant="h3"
+      fontWeight={800}
+      gutterBottom
+      sx={{
+        color: '#ffffff',
+        textShadow: '0 4px 20px rgba(0,0,0,0.6)',
+        fontSize: { xs: '2.2rem', md: '3.6rem' },
+        lineHeight: isArabic ? 1.5 : 1.2,
+      }}
+    >
+      {t('partners.titlePrefix')}{' '}
+      <Box
+        component="span"
+        sx={{
+          background: `linear-gradient(135deg, #b3e0ff, ${primaryLight})`,
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+      >
+        {t('partners.titleHighlight')}
+      </Box>
+    </Typography>
+  </motion.h3>
+</Zoom>
 
           <motion.div
             initial={{ opacity: 0 }}
