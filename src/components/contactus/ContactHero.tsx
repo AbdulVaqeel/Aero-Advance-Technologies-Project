@@ -16,7 +16,7 @@ const ContactHero: React.FC = () => {
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: isArabic ? 'flex-end' : 'flex-start',
-        backgroundImage: `url('./contact_img.jpg')`,
+        backgroundImage: 'url(contact_img.jpg)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         direction: isArabic ? 'rtl' : 'ltr',
