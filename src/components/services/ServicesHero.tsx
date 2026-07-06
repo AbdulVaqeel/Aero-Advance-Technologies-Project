@@ -11,7 +11,7 @@ const ServicesHero: React.FC = () => {
     <Box
       sx={{
         position: 'relative',
-        height: { xs: '430px', md: '650px' },
+        height: { xs: '500px', md: '650px' },
         backgroundImage:
           'url(products2.avif)',
         backgroundSize: 'cover',
@@ -37,13 +37,12 @@ const ServicesHero: React.FC = () => {
       <Slide direction="up" in timeout={1200}>
         <Container
           maxWidth="lg"
-          sx={{
-           position: 'relative',
-           zIndex: 1,
-           pb: { xs: 3, md: 10 },
-           pt: { xs: 10, md: 0 },
-           textAlign: isArabic ? 'right' : 'left',
-         }}
+         sx={{
+  position: 'relative',
+  zIndex: 1,
+  pt: { xs: 6, md: 29.5 },
+  textAlign: isArabic ? 'right' : 'left',
+}}
         >
           <Typography
             variant="h2"
@@ -51,7 +50,7 @@ const ServicesHero: React.FC = () => {
               fontWeight: 'bold',
               fontSize: { xs: '3rem', md: '5.5rem' },
               lineHeight: isArabic ? 1.3 : 1.1,
-              mt: { xs: 0, md: 40 },
+              mt: 0,
               color: '#fff',
 
               textShadow:
