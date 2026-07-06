@@ -34,7 +34,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
         loop
         muted
         playsInline
-        src="homepage_flight.mp4"
+        preload="auto"
+        src="homepage_flight1.mp4"
         sx={{
           position: 'absolute',
           top: 0,
