@@ -43,7 +43,7 @@ const OurPartners = () => {
           position: 'absolute',
           inset: 0,
           zIndex: 0,
-          backgroundImage: `url('https://images.unsplash.com/photo-1542296332-2e4473faf563?w=1800&q=75&auto=format&fit=crop')`,
+          backgroundImage: `url('partners2.avif')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'scroll',

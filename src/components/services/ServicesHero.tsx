@@ -196,7 +196,7 @@ const ServicesHero: React.FC = () => {
         position: 'relative',
         height: { xs: 'auto', md: '650px' },
         backgroundImage:
-          'url(https://images.pexels.com/photos/16926516/pexels-photo-16926516.jpeg)',
+          'url(products2.avif)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         display: 'flex',

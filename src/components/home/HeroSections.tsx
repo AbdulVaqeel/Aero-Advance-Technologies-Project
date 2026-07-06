@@ -154,7 +154,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ navigate }) => {
         muted
         playsInline
         preload="auto"
-        src="https://www.pexels.com/download/video/34003527/"
+        src="homepage_flight2.mp4"
         sx={{
           position: 'absolute',
           top: 0,
