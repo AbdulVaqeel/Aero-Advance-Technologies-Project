@@ -44,7 +44,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({
           align="center"
           sx={{
             fontSize: { xs: '1.8rem', sm: '2.4rem', md: '3rem' },
-            fontWeight: 700,
+            fontWeight: 300,
             color: '#031852ff',
             lineHeight: isArabic ? 1.4 : 1.2,
           }}

@@ -28,7 +28,7 @@
       }
     },
     "gallery1": {
-      "title": "Oils, Greases, Lubricants, Coolants, Chemicals",
+      "title": "Oils | Greases | Lubricants | Coolants | Chemicals",
       "images": {
         "oils": "Oils",
         "grease": "Grease",
@@ -38,7 +38,7 @@
       }
     },
     "gallery2": {
-      "title": "Aviation, Spare Parts, Tools, Equipment",
+      "title": "Aviation | Spare Parts | Tools | Equipment",
       "images": {
         "aviation": "Aviation",
         "spareParts": "Spare Parts",
@@ -47,7 +47,7 @@
       }
     },
     "gallery3": {
-      "title": "Electrical, Electronics & Communications",
+      "title": "Electrical | Electronics & Communications",
       "images": {
         "electrical": "Electrical",
         "electronicsCommunications": "Electronics & Communications"

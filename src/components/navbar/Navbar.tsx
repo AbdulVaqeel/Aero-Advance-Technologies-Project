@@ -137,7 +137,8 @@ const Navbar: React.FC = () => {
 
         <Button
           component="a"
-          href="https://wa.me/966546008481"
+          // href="https://wa.me/966546008481"
+          href="#"
           target="_blank"
           rel="noopener noreferrer"
           startIcon={isArabic ? undefined : <WhatsAppIcon />}
